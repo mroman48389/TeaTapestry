@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-    # Define a job, eslint, to run on the GitHub Ubuntu virtual machine
+    # Define a job, eslint, to run on the GitHub Ubuntu virtual machine.
     eslint:
         runs-on: ubuntu-latest
 
@@ -19,16 +19,16 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
 
-            # Install Node.js v18 in virtual environment
+            # Install Node.js v18 in virtual environment.
             - name: Set up Node.js
               uses: actions/setup-node@v3
               with:
                   node-version: 18
 
-            # Install dependencies using specified package.json
+            # Install dependencies using specified package.json.
             - name: Install dependencies
               run: npm ci
 
-            # Run lint script
+            # Run lint script.
             - name: Run ESLint
               run: npm run lint
