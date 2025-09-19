@@ -3,20 +3,17 @@ import storybook from "eslint-plugin-storybook";
 
 import js from '@eslint/js'
 import jsxA11y from 'eslint-plugin-jsx-a11y';
-import tseslint from 'typescript-eslint'
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 import tailwindcss from 'eslint-plugin-tailwindcss';
+import reactPlugin from 'eslint-plugin-react';
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 const sharedRules = {
-  indent: ['warn', 4], // enforce 4 space indentation
   'react/jsx-indent': ['warn', 4],
   'react/jsx-indent-props': ['warn', 4],
-
-  'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }], // throw error if variable is not used and its name does not start with _ or an uppercase letter
-
-  'tailwindcss/classnames-order': 'warn',
 };
 
 export default [
@@ -36,9 +33,11 @@ export default [
       },
     },
     plugins: {
+      react: reactPlugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'jsx-a11y': jsxA11y,
+      tailwindcss,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -46,31 +45,65 @@ export default [
       'jsx-a11y/alt-text': 'warn',
       'jsx-a11y/no-autofocus': 'warn',
       'jsx-a11y/anchor-is-valid': 'warn',
+      'jsx-a11y/no-static-element-interactions': 'warn', // Warns if div/span has click/keypress without role
+      'jsx-a11y/interactive-supports-focus': 'warn',     // Ensures interactive elements are focusable
+      'jsx-a11y/role-has-required-aria-props': 'warn',    // Ensures ARIA roles have required props
+      'jsx-a11y/aria-role': 'warn',                       // Validates ARIA role values
+      'jsx-a11y/tabindex-no-positive': 'warn',            // Discourages tabindex > 0 (bad for keyboard flow)
+      'tailwindcss/classnames-order': 'warn',
+      'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }], // throw error if variable is not used and its name does not start with _ or an uppercase letter
+      'react/react-in-jsx-scope': 'off', // Don't flag JSX usage without explicit "import React", since version 17+ doesn't require it.
       ...sharedRules,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
     },
+    settings: {
+      react: {
+        version: '18.0.0',
+      },
+    },
   }, 
 
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      parser: tseslint.parser,
+      parser: tsParser,
       parserOptions: {
         project: './tsconfig.json',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
       },
     },
     plugins: {
-      '@typescript-eslint': tseslint.plugin,
+      react: reactPlugin,
+      '@typescript-eslint': tseslint,
       tailwindcss,
+      'react-hooks': reactHooks,
     },
     rules: {
+      ...reactHooks.configs.recommended.rules,
       ...tseslint.configs.recommended.rules,
+      ...reactPlugin.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'tailwindcss/classnames-order': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
+      '@typescript-eslint/prefer-readonly': 'warn',
+      'react/react-in-jsx-scope': 'off', // Don't flag JSX usage without explicit "import React", since version 17+ doesn't require it.
       ...sharedRules,
     },
+    settings: {
+      react: {
+        version: '18.0.0',
+      },
+    },
+  },
+
+  {
+    files: ['**/*'],
+    ignores: ['dist', '*.md', '*.json'],
   },
 
   ...storybook.configs["flat/recommended"]
