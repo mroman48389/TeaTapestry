@@ -29,6 +29,14 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
+            # Check if ESLint is running from a different working directory.
+            # pwd shows current working directory. ls -la lists all files there. cat tsconfig.json prints file contents.
+            - name: Debug working directory
+              run: |
+                pwd
+                ls -la
+                cat tsconfig.json
+
             # Run lint script.
             - name: Run ESLint
               run: npm run lint
