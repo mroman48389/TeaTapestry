@@ -1,15 +1,15 @@
 {
     "compilerOptions": {
-      "target": "ESNext",         // tell TypeScript to compile to latest ECMAScript (ES) version
-      "module": "ESNext",         // use native ES modules for import/export
-      "moduleResolution": "Node", // resolve modules like Node.js does (ensures compatibility with React, Vite, and 3rd party packages)
-      "strict": true,             // enable strict type-checking options
-      "jsx": "react-jsx",         // use JSX transform from React (so we don't have to import React in every file)
-      "esModuleInterop": true,    // allow default imports from CommonJS modules (so, 'import express from 'express'' rather than 'import * as express')
-      "allowJs": true,            // compile .js files alongside .ts files (for gradual converting of files)
-      "checkJs": false,           // do not type check .js files
-      "outDir": "dist",           // where Vite will put compiled files for production 
-      "forceConsistentCasingInFileNames": true // prevent issues from inconsistent casing in imports for cross-platform consistency
+        "target": "ESNext",         // tell TypeScript to compile to latest ECMAScript (ES) version
+        "module": "ESNext",         // use native ES modules for import/export
+        "moduleResolution": "Node", // resolve modules like Node.js does (ensures compatibility with React, Vite, and 3rd party packages)
+        "strict": true,             // enable strict type-checking options
+        "jsx": "react-jsx",         // use JSX transform from React (so we don't have to import React in every file)
+        "esModuleInterop": true,    // allow default imports from CommonJS modules (so, 'import express from 'express'' rather than 'import * as express')
+        "allowJs": true,            // compile .js files alongside .ts files (for gradual converting of files)
+        "checkJs": false,           // do not type check .js files
+        "outDir": "dist",           // where Vite will put compiled files for production 
+        "forceConsistentCasingInFileNames": true // prevent issues from inconsistent casing in imports for cross-platform consistency
     },
     "include": ["src"]            // TypeScript will only look in src for compilable files
-  }
+}
