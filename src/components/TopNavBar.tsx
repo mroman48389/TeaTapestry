@@ -1,4 +1,10 @@
 export default function TopNavBar() {
 
-    return (<></>);
+    return (
+        <>
+            <div>
+                TopNavBar
+            </div>
+        </>
+    );
 }

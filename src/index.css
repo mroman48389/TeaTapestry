@@ -1,6 +1,16 @@
+@import "tailwindcss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@theme {
+    --color-sencha-green: #7cb342;     /* primary actions, nav */
+    --color-light-leaf-green: #a5d6a7; /* secondary buttons */
+    --color-tea-steam-green: #f1f8e9;  /* backgrounds, cards */
+    --color-wood-bowl-brown: #5d4037;  /* headers, key text */
+    --color-linen-white: #efebe9;      /* linen */
+  }
 
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

@@ -1,4 +1,10 @@
 export default function PageNavSideBar() {
 
-    return (<></>);
+    return (
+        <>
+            <div>
+                PageNavSideBar
+            </div>
+        </>
+    );
 }

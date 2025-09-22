@@ -14,6 +14,9 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 const sharedRules = {
   'react/jsx-indent': ['warn', 4],
   'react/jsx-indent-props': ['warn', 4],
+  "tailwindcss/enforces-shorthand": "warn",
+  'tailwindcss/classnames-order': 'warn',
+  semi: ["warn"],
 };
 
 export default [
@@ -50,7 +53,6 @@ export default [
       'jsx-a11y/role-has-required-aria-props': 'warn',    // Ensures ARIA roles have required props
       'jsx-a11y/aria-role': 'warn',                       // Validates ARIA role values
       'jsx-a11y/tabindex-no-positive': 'warn',            // Discourages tabindex > 0 (bad for keyboard flow)
-      'tailwindcss/classnames-order': 'warn',
       'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }], // throw error if variable is not used and its name does not start with _ or an uppercase letter
       'react/react-in-jsx-scope': 'off', // Don't flag JSX usage without explicit "import React", since version 17+ doesn't require it.
       ...sharedRules,
@@ -87,7 +89,6 @@ export default [
       ...tseslint.configs.recommended.rules,
       ...reactPlugin.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'tailwindcss/classnames-order': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
       '@typescript-eslint/prefer-readonly': 'warn',

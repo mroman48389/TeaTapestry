@@ -14,11 +14,12 @@ if (!rootElement) throw new Error('Root element not found');
 
 createRoot(rootElement).render(
     <StrictMode>
-
+        
+        {/* Make variables in store available to entire app. */}
         <Provider store={store}>
 
             <App/>
-            
+
         </Provider>
 
     </StrictMode>,

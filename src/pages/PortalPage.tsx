@@ -1,4 +1,10 @@
 export default function PortalPage() {
 
-    return (<></>);
+    return (
+        <>
+            <div>
+                Teaverse
+            </div>
+        </>
+    );
 }
