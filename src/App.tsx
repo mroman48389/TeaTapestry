@@ -6,6 +6,13 @@ import PortalPage from './pages/PortalPage';
 import PageNavSideBar from './components/PageNavSideBar';
 import TopNavBar from './components/TopNavBar';
 
+import {
+    Accordion,
+    AccordionItem,
+    AccordionTrigger,
+    AccordionContent,
+} from "@/components/ui/accordion";
+
 export default function App() {
     // const [count, setCount] = useState(0);
 
@@ -14,6 +21,21 @@ export default function App() {
             <TopNavBar/>
             <PageNavSideBar/>
             <PortalPage/>
+            <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                    <AccordionTrigger className='font-bold'>What is Teaverse?</AccordionTrigger>
+                    <AccordionContent>
+                        Teaverse is my demo project — this accordion is powered by shadcn + Radix.
+                    </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-2">
+                    <AccordionTrigger>Does it work?</AccordionTrigger>
+                    <AccordionContent>
+                        Yes! If you can expand and collapse these sections, shadcn is set up correctly.
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
         </>
 
         // <>

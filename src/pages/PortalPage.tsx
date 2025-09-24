@@ -2,7 +2,7 @@ export default function PortalPage() {
 
     return (
         <>
-            <div>
+            <div className="h-screen bg-[var(--color-tea-steam-green)]">
                 Teaverse
             </div>
         </>

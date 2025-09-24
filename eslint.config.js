@@ -21,7 +21,11 @@ const sharedRules = {
 
 export default [
   {
-    ignores: ['dist']
+    ignores: [
+      'dist', 
+      "src/components/ui/**", // ignore all shadcn components
+      "src/lib/utils.ts" // from shadcn
+    ],
   }, 
   
   {

@@ -1,9 +1,11 @@
+import NavSideBarList from "./NavSideBarList";
+
 export default function PageNavSideBar() {
 
     return (
         <>
-            <div>
-                PageNavSideBar
+            <div className="nav-side-bar">
+                <NavSideBarList/>
             </div>
         </>
     );

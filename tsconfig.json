@@ -9,7 +9,17 @@
         "allowJs": true,            // compile .js files alongside .ts files (for gradual converting of files)
         "checkJs": false,           // do not type check .js files
         "outDir": "dist",           // where Vite will put compiled files for production 
-        "forceConsistentCasingInFileNames": true // prevent issues from inconsistent casing in imports for cross-platform consistency
+        "forceConsistentCasingInFileNames": true, // prevent issues from inconsistent casing in imports for cross-platform consistency
+        "baseUrl": ".", // tell TypeScript what root of project is for resolving imports so TypeScript does not assume imports are relative. Let's us do @/components/Button, etc without climbing directories.
+        "paths": {
+            "@/*": ["./src/*"] // Define custom import aliases for TypeScript. Replace @/ with ./src/.
+        }
     },
-    "include": ["src"]            // TypeScript will only look in src for compilable files
+    "include": [
+        "src", 
+        "src/**/*.css",
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ]            // TypeScript will only look in src for compilable files
+ 
 }

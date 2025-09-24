@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
 import path from 'node:path';
@@ -12,11 +13,19 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  /* Tell bundler (Vite) to look in src/ when building. */
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
   test: {
     projects: [{
       extends: true,
       plugins: [
+        react(),
         tailwindcss(),
+        tsconfigPaths(),
         // The plugin will run tests for the stories defined in your Storybook config
         // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
         storybookTest({

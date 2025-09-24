@@ -2,8 +2,8 @@ export default function TopNavBar() {
 
     return (
         <>
-            <div>
-                TopNavBar
+            <div className="nav-top-bar">
+                
             </div>
         </>
     );
