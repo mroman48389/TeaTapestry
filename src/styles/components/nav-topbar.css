@@ -1,0 +1,10 @@
+@utility nav-top-bar {
+    /* layout and positioning */
+    @apply fixed top-0 left-0 w-full h-nav z-[1000];
+
+    /* color */
+    @apply bg-sencha-green;
+
+    /* effects */
+    @apply transition-shadow duration-300 ease-in-out;
+}

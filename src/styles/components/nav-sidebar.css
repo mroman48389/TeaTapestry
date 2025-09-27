@@ -1,0 +1,19 @@
+@utility nav-side-bar {
+    /* layout and positioning */
+    @apply fixed top-nav left-0 z-[1000] p-5;
+
+    height: calc(100vh - var(--spacing-nav));
+
+    /* Colors, appearance, and effects */
+    @apply bg-tea-steam-green;
+    @apply rounded-tr-2xl;
+    @apply shadow-sidebar-fallback;
+    @apply shadow-sidebar;
+
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+@utility nav-list {
+    /* layout and positioning. */
+    @apply flex flex-col items-start gap-y-6;
+}

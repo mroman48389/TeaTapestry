@@ -13,7 +13,10 @@
         "baseUrl": ".", // tell TypeScript what root of project is for resolving imports so TypeScript does not assume imports are relative. Let's us do @/components/Button, etc without climbing directories.
         "paths": {
             "@/*": ["./src/*"] // Define custom import aliases for TypeScript. Replace @/ with ./src/.
-        }
+        },
+        "types": [
+            "jest", "@testing-library/jest-dom"
+        ]
     },
     "include": [
         "src", 

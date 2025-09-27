@@ -1,0 +1,20 @@
+@utility btn {
+    /* layout and positioning */
+    @apply inline-block;
+    
+    @apply cursor-pointer;
+
+    /* Text */
+    @apply font-medium text-nav leading-nav tracking-nav text-wood-bowl-brown;
+    
+    /* Effects. Make the button more opaque and move it very slightly to signal that the user can interact with it. */
+    @apply transition opacity-80 duration-200 ease-in-out;
+
+    &:hover {
+        @apply opacity-100;
+    }
+        
+    &:active {
+        @apply translate-x-[1px] translate-y-[1px];
+    }
+}

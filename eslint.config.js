@@ -39,6 +39,7 @@ export default [
         sourceType: 'module',
       },
     },
+
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooks,
@@ -46,6 +47,7 @@ export default [
       'jsx-a11y': jsxA11y,
       tailwindcss,
     },
+
     rules: {
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
@@ -65,6 +67,7 @@ export default [
         { allowConstantExport: true },
       ],
     },
+
     settings: {
       react: {
         version: '18.0.0',
@@ -82,12 +85,14 @@ export default [
         sourceType: 'module',
       },
     },
+
     plugins: {
       react: reactPlugin,
       '@typescript-eslint': tseslint,
       tailwindcss,
       'react-hooks': reactHooks,
     },
+
     rules: {
       ...reactHooks.configs.recommended.rules,
       ...tseslint.configs.recommended.rules,
@@ -99,6 +104,7 @@ export default [
       'react/react-in-jsx-scope': 'off', // Don't flag JSX usage without explicit "import React", since version 17+ doesn't require it.
       ...sharedRules,
     },
+    
     settings: {
       react: {
         version: '18.0.0',

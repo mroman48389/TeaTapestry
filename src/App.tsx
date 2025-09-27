@@ -3,7 +3,7 @@
 // import viteLogo from '/vite.svg';
 import './App.css';
 import PortalPage from './pages/PortalPage';
-import PageNavSideBar from './components/PageNavSideBar';
+import NavSidebar from './components/NavSidebar/NavSidebar';
 import TopNavBar from './components/TopNavBar';
 
 import {
@@ -19,7 +19,7 @@ export default function App() {
     return (
         <>
             <TopNavBar/>
-            <PageNavSideBar/>
+            <NavSidebar/>
             <PortalPage/>
             <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
