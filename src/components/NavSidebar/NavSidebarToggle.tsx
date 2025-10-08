@@ -17,7 +17,7 @@ export default function NavSidebarToggle(props: NavSidebarToggleProps) {
                 <svg xmlns="http://www.w3.org/2000/svg" 
                     className={cn(
                         "size-6 text-wood-bowl-brown transform transition-transform duration-300",
-                        open ? "rotate-180" : "rotate-0"
+                        open ? "rotate-0" : "rotate-180"
                     )}
                     fill="none" 
                     viewBox="0 0 24 24" 

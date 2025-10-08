@@ -8,7 +8,7 @@ export default function NavSidebar() {
 
     return (
         <>
-            <div className={`nav-side-bar transition-[width] duration-200 ease-in-out ${open ? "w-64": "w-14"}`}>
+            <div className={`nav-side-bar transition-[width] duration-200 ease-in-out ${open ? "w-73": "w-14"}`}>
                 <NavSidebarToggle 
                     open={open}
                     onToggleClick={() => setOpen(!open)}

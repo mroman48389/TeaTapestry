@@ -17,3 +17,7 @@
     /* layout and positioning. */
     @apply flex flex-col items-start gap-y-6;
 }
+
+@utility nav-list-item {
+    @apply flex flex-col items-start w-full;
+}

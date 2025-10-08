@@ -23,9 +23,9 @@ export default function App() {
             <PortalPage/>
             <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
-                    <AccordionTrigger className='font-bold'>What is Teaverse?</AccordionTrigger>
+                    <AccordionTrigger className='font-bold'>What is Tea Tapestry?</AccordionTrigger>
                     <AccordionContent>
-                        Teaverse is my demo project — this accordion is powered by shadcn + Radix.
+                        Tea Tapestry is my demo project — this accordion is powered by shadcn + Radix.
                     </AccordionContent>
                 </AccordionItem>
 
