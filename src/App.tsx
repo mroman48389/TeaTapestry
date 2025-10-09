@@ -4,7 +4,7 @@
 import './App.css';
 import PortalPage from './pages/PortalPage';
 import NavSidebar from './components/NavSidebar/NavSidebar';
-import TopNavBar from './components/TopNavBar';
+import TopNavbar from './components/TopNavbar/TopNavbar';
 
 import {
     Accordion,
@@ -18,7 +18,7 @@ export default function App() {
 
     return (
         <>
-            <TopNavBar/>
+            <TopNavbar/>
             <NavSidebar/>
             <PortalPage/>
             <Accordion type="single" collapsible className="w-full">

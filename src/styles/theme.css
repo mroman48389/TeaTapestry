@@ -6,6 +6,8 @@
     --color-tea-steam-green: #f1f8e9;  /* backgrounds, cards */
     --color-wood-bowl-brown: #5d4037;  /* headers, key text */
     --color-linen-white: #efebe9;      /* linen */
+    --color-duanni-yellow: '#c9a873';  /* threads, outlines */
+    --color-zisha-brown: '#7b5446';    /* threads, outlines */
 
     /* Spacing */
     --spacing-nav: 5rem; /* equivalent to h-20 (20 * 0.25rem = 5rem)  */

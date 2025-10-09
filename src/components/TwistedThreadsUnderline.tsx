@@ -1,5 +1,7 @@
-import { ComponentProps } from "react";
+import { ComponentProps } from 'react';
 import { motion }  from 'motion/react';
+
+import { APP_COLORS } from '@/constants/app';
 
 type TwistedThreadsUnderlineProps = {
     width: number;
@@ -62,15 +64,15 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
         >
             <defs>
                 <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#C9A873" />
-                    <stop offset="100%" stopColor="#7B5446" />
+                    <stop offset="0%" stopColor={APP_COLORS.DUANNI_YELLOW} />
+                    <stop offset="100%" stopColor={APP_COLORS.ZISHA_BROWN} />
                 </linearGradient>
             </defs>
 
             {/* Top thread (Duanni yellow) */}
             <motion.path
                 d={topPath}
-                stroke="#C9A873"
+                stroke={APP_COLORS.DUANNI_YELLOW}
                 strokeWidth="2"
                 fill="none"
                 initial={{ pathLength: 0 }}
@@ -81,7 +83,7 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
             {/* Bottom thread (Zisha brown) */}
             <motion.path
                 d={bottomPath}
-                stroke="#7B5446"
+                stroke={APP_COLORS.ZISHA_BROWN}
                 strokeWidth="2"
                 fill="none"
                 initial={{ pathLength: 0 }}
@@ -104,7 +106,7 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
                         Z`
                     }
                     fill="url(#leafGradient)"
-                    stroke="#7B5446"
+                    stroke={APP_COLORS.ZISHA_BROWN}
                     strokeWidth="1"
                 />
 
@@ -112,7 +114,7 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
 
                 <path
                     d={`M${totalPathWidth - 22},10 L${totalPathWidth},10`}
-                    stroke="#7B5446"
+                    stroke={APP_COLORS.ZISHA_BROWN}
                     strokeWidth="0.5"
                     opacity="0.6"
                 />
@@ -121,28 +123,28 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
 
                 <path
                     d={`M${totalPathWidth - 16},10 L${totalPathWidth - 14},7`}
-                    stroke="#7B5446"
+                    stroke={APP_COLORS.ZISHA_BROWN}
                     strokeWidth="0.4"
                     opacity="0.5"
                 />
 
                 <path
                     d={`M${totalPathWidth - 16},10 L${totalPathWidth - 14},13`}
-                    stroke="#7B5446"
+                    stroke={APP_COLORS.ZISHA_BROWN}
                     strokeWidth="0.4"
                     opacity="0.5"
                 />
 
                 <path
                     d={`M${totalPathWidth - 10},10 L${totalPathWidth - 8},7`}
-                    stroke="#7B5446"
+                    stroke={APP_COLORS.ZISHA_BROWN}
                     strokeWidth="0.4"
                     opacity="0.5"
                 />
 
                 <path
                     d={`M${totalPathWidth - 10},10 L${totalPathWidth - 8},13`}
-                    stroke="#7B5446"
+                    stroke={APP_COLORS.ZISHA_BROWN}
                     strokeWidth="0.4"
                     opacity="0.5"
                 />

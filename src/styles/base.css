@@ -1,5 +1,6 @@
 @layer base {
     html, body {
         @apply bg-tea-steam-green;
+        font-family: var(--font-body);
     }
 }

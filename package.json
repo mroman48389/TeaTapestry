@@ -25,8 +25,7 @@
     "react-dom": "^18.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.1",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
@@ -36,8 +35,8 @@
     "@storybook/addon-onboarding": "^9.1.7",
     "@storybook/addon-vitest": "^9.1.7",
     "@storybook/react-vite": "^9.1.7",
-    "@tailwindcss/cli": "^4.1.13",
-    "@tailwindcss/vite": "^4.1.13",
+    "@tailwindcss/cli": "^4.1.14",
+    "@tailwindcss/vite": "^4.1.14",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -65,6 +64,7 @@
     "playwright": "^1.55.0",
     "storybook": "^9.1.7",
     "tailwindcss": "^4.1.13",
+    "tailwindcss-animate": "^1.0.7",
     "ts-jest": "^29.4.4",
     "typescript": "^5.9.2",
     "vite": "^6.2.0",

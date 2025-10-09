@@ -1,25 +1,26 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+const storybook = require("eslint-plugin-storybook");
 
-import js from '@eslint/js'
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import tailwindcss from 'eslint-plugin-tailwindcss';
-import reactPlugin from 'eslint-plugin-react';
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+const js = require('@eslint/js');
+const jsxA11y = require('eslint-plugin-jsx-a11y');
+const tseslint = require('@typescript-eslint/eslint-plugin');
+const tsParser = require('@typescript-eslint/parser');
+const tailwindcss = require('eslint-plugin-tailwindcss');
+const reactPlugin = require('eslint-plugin-react');
+const globals = require('globals');
+const reactHooks = require('eslint-plugin-react-hooks');
+const reactRefresh = require('eslint-plugin-react-refresh');
 
 const sharedRules = {
   'react/jsx-indent': ['warn', 4],
   'react/jsx-indent-props': ['warn', 4],
   "tailwindcss/enforces-shorthand": "warn",
   'tailwindcss/classnames-order': 'warn',
+  'tailwindcss/no-custom-classname': 'off',
   semi: ["warn"],
 };
 
-export default [
+module.exports = [
   {
     ignores: [
       'dist', 
@@ -72,6 +73,10 @@ export default [
       react: {
         version: '18.0.0',
       },
+      tailwindcss: {
+        config: require.resolve('./tailwind.config.js'),
+        tailwindcssPath: require.resolve('tailwindcss'), 
+      },
     },
   }, 
 
@@ -109,6 +114,10 @@ export default [
       react: {
         version: '18.0.0',
       },
+      tailwindcss: {
+        config: require.resolve('./tailwind.config.js'),
+        tailwindcssPath: require.resolve('tailwindcss'), 
+      }
     },
   },
 
