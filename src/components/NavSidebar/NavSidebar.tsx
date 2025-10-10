@@ -7,8 +7,8 @@ export default function NavSidebar() {
     const [open, setOpen] = useState(true);
 
     return (
-        <>
-            <div className={`nav-side-bar transition-[width] duration-200 ease-in-out ${open ? "w-73": "w-14"}`}>
+        <nav aria-label="Nav sidebar">
+            <div className={`nav-sidebar transition-[width] duration-200 ease-in-out ${open ? "w-73": "w-14"}`}>
                 <NavSidebarToggle 
                     open={open}
                     onToggleClick={() => setOpen(!open)}
@@ -17,6 +17,6 @@ export default function NavSidebar() {
                     open={open}
                 />
             </div>
-        </>
+        </nav>
     );
 }

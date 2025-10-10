@@ -14,6 +14,7 @@ export default function NavSidebarToggle(props: NavSidebarToggleProps) {
     return (
         <div className="flex w-full justify-end">
             <button className="btn" onClick={onToggleClick} {...rest}>
+                <span className="sr-only">{open ? "Close sidebar" : "Open sidebar"}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" 
                     className={cn(
                         "size-6 text-wood-bowl-brown transform transition-transform duration-300",
@@ -30,7 +31,6 @@ export default function NavSidebarToggle(props: NavSidebarToggleProps) {
                         d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"
                     />
                 </svg>
-
             </button>
         </div>
     );

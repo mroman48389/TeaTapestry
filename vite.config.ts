@@ -19,6 +19,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Pre-bundle Emotion to avoid runtime resolution issues since we're using MUI and Vite.
+  optimizeDeps: {
+    include: ["@emotion/react", "@emotion/styled"],
+  },
   test: {
     projects: [{
       extends: true,

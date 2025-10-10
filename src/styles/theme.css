@@ -1,13 +1,14 @@
 /* Theme tokens */
 @theme {
     /* Colors */
-    --color-sencha-green: #7cb342;     /* primary actions, nav */
-    --color-light-leaf-green: #a5d6a7; /* secondary buttons */
-    --color-tea-steam-green: #f1f8e9;  /* backgrounds, cards */
-    --color-wood-bowl-brown: #5d4037;  /* headers, key text */
-    --color-linen-white: #efebe9;      /* linen */
-    --color-duanni-yellow: '#c9a873';  /* threads, outlines */
-    --color-zisha-brown: '#7b5446';    /* threads, outlines */
+    --color-sencha-green: #9dcf60;        /* primary actions, nav */
+    --color-light-leaf-green: #a5d6a7;    /* secondary buttons */
+    --color-tea-steam-green: #f1f8e9;     /* backgrounds, cards */
+    --color-wood-bowl-brown: #5d4037;     /* headers, key text */
+    --color-linen-white: #efebe9;         /* linen */
+    --color-duanni-yellow: #c9a873;       /* threads, outlines */
+    --color-zisha-brown: #7b5446;         /* threads, outlines */
+    --color-dark-mahogany-brown: #3e241d; /* top nav bar items */   
 
     /* Spacing */
     --spacing-nav: 5rem; /* equivalent to h-20 (20 * 0.25rem = 5rem)  */

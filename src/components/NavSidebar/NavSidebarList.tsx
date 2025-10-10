@@ -37,8 +37,8 @@ export default function NavSidebarList(props: NavSidebarListProps) {
     return (
         <>
             <ul 
+                className={`nav-sidebar-list overflow-hidden transition-opacity duration-150 ${open ? "relative opacity-100 delay-150" : "absolute opacity-0"}`}
                 {...rest} 
-                className={`nav-list overflow-hidden transition-opacity duration-150 ${open ? "relative opacity-100 delay-150" : "absolute opacity-0"}`}
             > 
                 <NavSidebarListItem 
                     itemName={homeMeta.title} 

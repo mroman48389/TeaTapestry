@@ -1,7 +1,7 @@
 /*  pageKeys: A constant object that maps semantic page identifiers to symbolic string values.
     These values act as stable, type-safe keys for routing, metadata, analytics, and onboarding logic. */
 export const pageKeys = {
-    home                 : 'HOME',
+    home                 : 'HOME', // sidebar and navbar
     whatIsTea            : 'WHAT_IS_TEA',
     whereDoesTeaComeFrom : 'WHERE_DOES_TEA_COME_FROM',
     growingAndProcessing : 'GROWING_AND_PROCESSING',
@@ -10,6 +10,11 @@ export const pageKeys = {
     teaProfiles          : 'TEA_PROFILES',
     teaware              : 'TEAWARE',
     teaTerminology       : 'TEA_TERMINOLOGY',
+    
+    about                : 'ABOUT',
+    whatsNew             : 'WHATS_NEW',
+    contact              : 'CONTACT',
+    logIn                : 'LOG_IN',
 } as const;
   
 /*  PageKeys: A type alias that extracts the keys from pageKeys as a union type. Provides type-safe 
@@ -71,6 +76,26 @@ export const Pages: Record<typeof pageKeys[PageKeys], PageMeta> = {
     [pageKeys.teaTerminology]: {
         title : 'Tea terminology',
         path  : '/terminology',
+    },
+
+    [pageKeys.about]: {
+        title : 'About',
+        path  : '/terminology',
+    },
+
+    [pageKeys.whatsNew]: {
+        title : 'What\'s new?',
+        path  : '/whats-new',
+    },
+
+    [pageKeys.contact]: {
+        title : 'Contact',
+        path  : '/contact',
+    },
+
+    [pageKeys.logIn]: {
+        title : 'Log in',
+        path  : '/log-in',
     },
 
 } as const;

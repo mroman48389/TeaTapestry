@@ -24,7 +24,7 @@ export default function NavSidebarListItem(props: NavSidebarListItemProps) {
     }, [itemName]);    
 
     return (
-        <li className="nav-list-item">
+        <li className="nav-sidebar-list-item">
             <a ref={textRef} className="btn" href={pageLink} {...rest}>
                 {itemName}
             </a>

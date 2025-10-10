@@ -1,0 +1,22 @@
+@utility top-navbar {
+    /* layout and positioning */
+    @apply fixed top-0 left-0 w-full h-nav z-[1000];
+    @apply flex justify-between;
+
+    /* color */
+    @apply bg-sencha-green;
+
+    /* effects */
+    @apply transition-shadow duration-300 ease-in-out;
+}
+
+@utility app-title {
+    /* Same color and opacity has unhovered buttons. */
+    @apply text-dark-mahogany-brown text-3xl opacity-80;
+}
+
+@utility top-navbar-list {
+    /* layout and positioning. Note that we're not using gap-x-6 anymore because it's more difficult to change the gap for just one
+       list item using gap in Tailwind. Instead, use space-x. */
+    @apply flex items-center space-x-10 mr-5;
+}

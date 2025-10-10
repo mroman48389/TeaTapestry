@@ -18,3 +18,8 @@
         @apply translate-x-[1px] translate-y-[1px];
     }
 }
+
+@utility top-navbar-btn {
+    /* Text */
+    @apply font-bold text-body text-dark-mahogany-brown;
+}

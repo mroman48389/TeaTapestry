@@ -1,4 +1,4 @@
-@utility nav-side-bar {
+@utility nav-sidebar {
     /* layout and positioning */
     @apply fixed top-nav left-0 z-[1000] p-5;
 
@@ -13,11 +13,11 @@
     transition: box-shadow 0.2s ease-in-out;
 }
 
-@utility nav-list {
+@utility nav-sidebar-list {
     /* layout and positioning. */
     @apply flex flex-col items-start gap-y-6;
 }
 
-@utility nav-list-item {
+@utility nav-sidebar-list-item {
     @apply flex flex-col items-start w-full;
 }

@@ -20,22 +20,26 @@ export default function App() {
         <>
             <TopNavbar/>
             <NavSidebar/>
-            <PortalPage/>
-            <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-1">
-                    <AccordionTrigger className='font-bold'>What is Tea Tapestry?</AccordionTrigger>
-                    <AccordionContent>
-                        Tea Tapestry is my demo project — this accordion is powered by shadcn + Radix.
-                    </AccordionContent>
-                </AccordionItem>
+            <main>
+                <PortalPage/>
+                <h1>Tea Tapestry</h1>
+                <h2>FAQs</h2>
+                <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger className='font-bold'>What is Tea Tapestry?</AccordionTrigger>
+                        <AccordionContent>
+                            Tea Tapestry is my demo project — this accordion is powered by shadcn + Radix.
+                        </AccordionContent>
+                    </AccordionItem>
 
-                <AccordionItem value="item-2">
-                    <AccordionTrigger>Does it work?</AccordionTrigger>
-                    <AccordionContent>
-                        Yes! If you can expand and collapse these sections, shadcn is set up correctly.
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+                    <AccordionItem value="item-2">
+                        <AccordionTrigger>Does it work?</AccordionTrigger>
+                        <AccordionContent>
+                            Yes! If you can expand and collapse these sections, shadcn is set up correctly.
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </main>
         </>
 
         // <>
