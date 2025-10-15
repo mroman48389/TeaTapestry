@@ -14,6 +14,7 @@ export default function NavSidebarToggle(props: NavSidebarToggleProps) {
     return (
         <div className="flex w-full justify-end">
             <button className="btn" onClick={onToggleClick} {...rest}>
+                {/* Make button accessible for people with screen readers. */}
                 <span className="sr-only">{open ? "Close sidebar" : "Open sidebar"}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" 
                     className={cn(

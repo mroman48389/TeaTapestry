@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { Provider } from 'react-redux';
-import { store } from './app/store'; 
+import { store } from './store/store'; 
 
 /* npm install @fontsource/cabin */
 import "@fontsource/cabin/400.css"; // body text, paragraphs, UI labels
@@ -19,14 +19,12 @@ const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Root element not found');
 
 createRoot(rootElement).render(
+    /* StrictMode will cause everything to render twice but will not be in the production when built. StrictMode
+       helps detect bugs and potential issues and enforces best practices. */
     <StrictMode>
-        
         {/* Make variables in store available to entire app. */}
         <Provider store={store}>
-
             <App/>
-
         </Provider>
-
     </StrictMode>,
 );

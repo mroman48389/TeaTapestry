@@ -5,43 +5,42 @@ import { ComponentPropsWithoutRef } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-import { pageKeys, Pages } from "@/constants/pages";
-import TopNavBarListItem from "./TopNavbarListItem";
+import { pageIDs, PageID } from "@/constants/pages";
+import TopNavbarListItem from "./TopNavbarListItem";
 
 type TopNavbarListProps = {
-
+    selectedPageID: PageID;
+    onSelectPage : (value: PageID) => void;
 } & ComponentPropsWithoutRef<"ul">;
 
 export default function TopNavbarList(props: TopNavbarListProps) {
-    const {...rest} = props;
-
-    const homeMeta = Pages[pageKeys.home];
-    const aboutMeta = Pages[pageKeys.about];
-    const whatsNewMeta = Pages[pageKeys.whatsNew];
-    const contactMeta = Pages[pageKeys.contact];
-    const logInMeta = Pages[pageKeys.logIn];
+    const {selectedPageID, onSelectPage, ...rest} = props;
 
     return (
         <nav className="flex" aria-label="Top navbar">
             <ul className="top-navbar-list" {...rest}> 
-                <TopNavBarListItem 
-                    itemName={homeMeta.title} 
-                    pageLink={homeMeta.path}
+                <TopNavbarListItem 
+                    pageID={pageIDs.home}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
                 />
 
-                <TopNavBarListItem 
-                    itemName={aboutMeta.title} 
-                    pageLink={aboutMeta.path}
+                <TopNavbarListItem 
+                    pageID={pageIDs.about}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
                 />
 
-                <TopNavBarListItem 
-                    itemName={whatsNewMeta.title} 
-                    pageLink={whatsNewMeta.path}
+                <TopNavbarListItem 
+                    pageID={pageIDs.whatsNew}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
                 />
 
-                <TopNavBarListItem 
-                    itemName={contactMeta.title} 
-                    pageLink={contactMeta.path}
+                <TopNavbarListItem 
+                    pageID={pageIDs.contact}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
                 />
 
                 <li className="mr-0">
@@ -57,9 +56,10 @@ export default function TopNavbarList(props: TopNavbarListProps) {
                     </Avatar>
                 </li>
 
-                <TopNavBarListItem 
-                    itemName={logInMeta.title} 
-                    pageLink={logInMeta.path}
+                <TopNavbarListItem 
+                    pageID={pageIDs.logIn}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
                 />
             </ul>
         </nav>

@@ -1,10 +1,14 @@
-// import { useState } from 'react';
-// import reactLogo from './assets/react.svg';
-// import viteLogo from '/vite.svg';
+import { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { RootState } from "./store/store";
+import { setSelectedPageID } from "./store/selectedPageSlice";
+
 import './App.css';
 import PortalPage from './pages/PortalPage';
 import NavSidebar from './components/NavSidebar/NavSidebar';
 import TopNavbar from './components/TopNavbar/TopNavbar';
+import { PageID } from "./constants/pages";
 
 import {
     Accordion,
@@ -14,12 +18,25 @@ import {
 } from "@/components/ui/accordion";
 
 export default function App() {
-    // const [count, setCount] = useState(0);
+    /* Use Redux store instead to prevent App from completely re-rendering. */
+    // const [selectedPageID, setSelectedPageID] = useState<PageID>(pageIDs.home);
+    const selectedPageID = useSelector((state: RootState) => state.selectedPage);
+    const dispatch = useDispatch();
+
+    /* Memoize the page selection handler to prevent unnecessary re-renders of memoized child components.
+        Without useCallback, this function would be re-created on every render, causing props like onSelectPage
+        to change and triggering re-renders in components like NavSidebarListItem (even when their visual state hasn't changed). */
+    const handleSetSelectedPageID = useCallback((id: PageID) => {
+        dispatch(setSelectedPageID(id));
+    }, [dispatch]);
+
+    console.log("App component rendered");
 
     return (
         <>
-            <TopNavbar/>
-            <NavSidebar/>
+            <TopNavbar selectedPageID={selectedPageID} onSelectPage={handleSetSelectedPageID}/>
+            <NavSidebar selectedPageID={selectedPageID} onSelectPage={handleSetSelectedPageID}/>
+
             <main>
                 <PortalPage/>
                 <h1>Tea Tapestry</h1>

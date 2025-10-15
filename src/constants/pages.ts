@@ -1,6 +1,6 @@
-/*  pageKeys: A constant object that maps semantic page identifiers to symbolic string values.
+/*  pageIDs: A constant object that maps semantic page identifiers (the keys) to symbolic string values.
     These values act as stable, type-safe keys for routing, metadata, analytics, and onboarding logic. */
-export const pageKeys = {
+export const pageIDs = {
     home                 : 'HOME', // sidebar and navbar
     whatIsTea            : 'WHAT_IS_TEA',
     whereDoesTeaComeFrom : 'WHERE_DOES_TEA_COME_FROM',
@@ -17,10 +17,17 @@ export const pageKeys = {
     logIn                : 'LOG_IN',
 } as const;
   
-/*  PageKeys: A type alias that extracts the keys from pageKeys as a union type. Provides type-safe 
-    access to valid page identifiers like 'home' | 'whatIsTea' | ... Anywhere a page key is used, 
+/*  PageKey: A type alias that extracts the keys from the pageIDs object as a union type (equivalent to
+    "type PageKey = "home" | "whatIsTea" | "whereDoesTeaComeFrom" |..."). These semantic keys provide 
+    type-safe access to valid pages throughout the app. Anywhere a page is referenced by its semantic key, 
     TypeScript will validate against this list. */
-export type PageKeys = keyof typeof pageKeys;
+export type PageKey = keyof typeof pageIDs;
+export type PageID = typeof pageIDs[PageKey];
+
+/* Create a reverse mapping without explicitly typing it out. */
+export const pageKeyByID = Object.fromEntries(
+    Object.entries(pageIDs).map(([k, v]) => [v, k])
+) as Record<string, PageKey>;
 
 /*  PageMeta: Defines the shape of metadata for each page. Using an interface instead of a type alias 
     follows linting rules and keeps the structure extensible. */
@@ -29,73 +36,73 @@ interface PageMeta {
     path  : string;
 };
 
-/*  Pages: A metadata map that links each symbolic page key (e.g., 'HOME') to its corresponding metadata.
-    Keys come from pageKeys, and the values must match the PageMeta interface. This setup provides full 
-    IntelliSense, compile-time validation, and centralized control over page behavior. */
-export const Pages: Record<typeof pageKeys[PageKeys], PageMeta> = {
-    [pageKeys.home]: {
+/*  Pages: A metadata map providing full  IntelliSense, compile-time validation, and centralized control over page behavior. */
+export const Pages: Record<typeof pageIDs[PageKey], PageMeta> = {
+    [pageIDs.home]: {
         title : 'Home',
         path  : '/',
     },
 
-    [pageKeys.whatIsTea]: {
+    [pageIDs.whatIsTea]: {
         title : 'What is tea?',
         path  : '/what-is-tea',
     },
 
-    [pageKeys.whereDoesTeaComeFrom]: {
+    [pageIDs.whereDoesTeaComeFrom]: {
         title : 'Where does tea come from?',
         path  : '/where-does-tea-come-from',
     },
 
-    [pageKeys.growingAndProcessing]: {
+    [pageIDs.growingAndProcessing]: {
         title : 'Growing and processing',
         path  : '/growing-and-processing',
     },
 
-    [pageKeys.brewingMethods]: {
+    [pageIDs.brewingMethods]: {
         title : 'Brewing methods',
         path  : '/brewing-methods',
     },
 
-    [pageKeys.experiencingTea]: {
+    [pageIDs.experiencingTea]: {
         title : 'Experiencing tea',
         path : '/experiencing-tea',
     },
 
-    [pageKeys.teaProfiles]: {
+    [pageIDs.teaProfiles]: {
         title : 'Tea profiles',
         path  : '/tea-profiles',
     },
 
-    [pageKeys.teaware]: {
+    [pageIDs.teaware]: {
         title : 'Teaware',
         path  : '/teaware',
     },
 
-    [pageKeys.teaTerminology]: {
+    [pageIDs.teaTerminology]: {
         title : 'Tea terminology',
         path  : '/terminology',
     },
 
-    [pageKeys.about]: {
+    [pageIDs.about]: {
         title : 'About',
         path  : '/terminology',
     },
 
-    [pageKeys.whatsNew]: {
+    [pageIDs.whatsNew]: {
         title : 'What\'s new?',
         path  : '/whats-new',
     },
 
-    [pageKeys.contact]: {
+    [pageIDs.contact]: {
         title : 'Contact',
         path  : '/contact',
     },
 
-    [pageKeys.logIn]: {
+    [pageIDs.logIn]: {
         title : 'Log in',
         path  : '/log-in',
     },
 
 } as const;
+
+export type Page = keyof typeof Pages;

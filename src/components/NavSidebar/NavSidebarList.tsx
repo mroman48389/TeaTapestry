@@ -1,27 +1,18 @@
 
 import { ComponentPropsWithoutRef } from "react";
-// import { useState } from "react";
 
-import { pageKeys, Pages } from "@/constants/pages";
+import { pageIDs, PageID } from "@/constants/pages";
 import NavSidebarListItem from "./NavSidebarListItem";
 
 type NavSidebarListProps = {
     open: boolean;
+    selectedPageID: PageID;
+    onSelectPage: (value: PageID) => void;
 } & ComponentPropsWithoutRef<"ul">;
 
 export default function NavSidebarList(props: NavSidebarListProps) {
-    // const [selectedListItem, setSelectedListItem] = useState();
-    const {open, ...rest} = props;
+    const {open, selectedPageID, onSelectPage, ...rest} = props;
 
-    const homeMeta = Pages[pageKeys.home];
-    const whatIsTeaMeta = Pages[pageKeys.whatIsTea];
-    const whereDoesTeaComeFromMeta = Pages[pageKeys.whereDoesTeaComeFrom];
-    const growingAndProcessingMeta = Pages[pageKeys.growingAndProcessing];
-    const brewingMethodsMeta = Pages[pageKeys.brewingMethods];
-    const experiencingTeaMeta = Pages[pageKeys.experiencingTea];
-    const teaProfileMeta = Pages[pageKeys.teaProfiles];
-    const teawareMeta = Pages[pageKeys.teaware];
-    const teaTerminologyMeta = Pages[pageKeys.teaTerminology];
 
     /*  The following makes the text appear less clunky when the sidebar opens/closes.
 
@@ -41,40 +32,49 @@ export default function NavSidebarList(props: NavSidebarListProps) {
                 {...rest} 
             > 
                 <NavSidebarListItem 
-                    itemName={homeMeta.title} 
-                    pageLink={homeMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.home}
                 />
                 <NavSidebarListItem 
-                    itemName={whatIsTeaMeta.title} 
-                    pageLink={whatIsTeaMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.whatIsTea}
                 />
                 <NavSidebarListItem 
-                    itemName={whereDoesTeaComeFromMeta.title} 
-                    pageLink={whereDoesTeaComeFromMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.whereDoesTeaComeFrom}
                 />
                 <NavSidebarListItem 
-                    itemName={growingAndProcessingMeta.title} 
-                    pageLink={growingAndProcessingMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.growingAndProcessing}
                 />
                 <NavSidebarListItem 
-                    itemName={brewingMethodsMeta.title} 
-                    pageLink={brewingMethodsMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.brewingMethods}
                 />
                 <NavSidebarListItem 
-                    itemName={experiencingTeaMeta.title} 
-                    pageLink={experiencingTeaMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.experiencingTea}
                 />
                 <NavSidebarListItem 
-                    itemName={teaProfileMeta.title} 
-                    pageLink={teaProfileMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.teaProfiles}
                 />
                 <NavSidebarListItem 
-                    itemName={teawareMeta.title} 
-                    pageLink={teawareMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.teaware}
                 />
                 <NavSidebarListItem 
-                    itemName={teaTerminologyMeta.title} 
-                    pageLink={teaTerminologyMeta.path}
+                    selectedPageID={selectedPageID}
+                    onSelectPage={onSelectPage}
+                    pageID={pageIDs.teaTerminology}
                 />
             </ul>
         </>
