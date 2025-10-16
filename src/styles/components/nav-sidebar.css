@@ -15,9 +15,10 @@
 
 @utility nav-sidebar-list {
     /* layout and positioning. */
-    @apply flex flex-col items-start gap-y-6;
+    @apply flex flex-col items-start gap-y-7;
 }
 
 @utility nav-sidebar-list-item {
-    @apply flex flex-col items-start w-full;
+    /* Layout and positioning. Relative so we can absolutely position underlines and they will not move nav items. */
+    @apply relative flex flex-col items-start w-full;
 }

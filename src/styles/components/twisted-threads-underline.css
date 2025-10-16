@@ -1,0 +1,4 @@
+@utility twisted-threads-underline {
+    /* Layout and positioning. Absolutely position [presumably under text] so there are no layout shifts. */
+    @apply absolute bottom-1 left-0 w-full h-[1px] pointer-events-none;
+} 

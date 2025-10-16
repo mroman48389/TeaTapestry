@@ -1,5 +1,6 @@
-import { ComponentPropsWithoutRef, memo } from "react";
+import { ComponentPropsWithoutRef, useRef, useState, useEffect, memo } from "react";
 
+import TwistedThreadsUnderline from "../TwistedThreadsUnderline";
 import { Pages, PageID } from "@/constants/pages";
 
 type TopNavbarListItemProps = {
@@ -9,10 +10,24 @@ type TopNavbarListItemProps = {
 } & ComponentPropsWithoutRef<"a">;
 
 function TopNavbarListItem(props: TopNavbarListItemProps) {
-    const {pageID, onSelectPage, ...rest} = props;
-    // selectedPageID,
+    /* Create ref for direct access to anchor element so we can grab info from it (the offsetWidth DOM measurement). We 
+        Can't use useState to hold a DOM node directly, since React doesn't know when the DOM is ready. We'd end up
+        triggering unncessary re-renders if we tried. This reference will persist across renders. */
+    const textRef = useRef<HTMLAnchorElement>(null);
+    const [textWidth, setTextWidth] = useState(0);
+
+    const {pageID, selectedPageID, onSelectPage, ...rest} = props;
+    
     const itemName = Pages[pageID].title;
     const pageLink = Pages[pageID].path;
+
+    useEffect(() => {
+        /* If text has been rendered, set its width as state. We'll use this width to determine how long the underline
+           svg should be. Effect is dependent on the item name, so run again if item name changes. */
+        if (textRef.current) {
+            setTextWidth(textRef.current.offsetWidth);
+        }
+    }, [itemName]);    
 
     function onAnchorClick(e: React.MouseEvent<HTMLAnchorElement>) {
         /* Prevent browser from navigating; we'll handle it with React Router ourselves. If we let the browser do this,
@@ -22,10 +37,11 @@ function TopNavbarListItem(props: TopNavbarListItemProps) {
     }
 
     return (
-        <li>
-            <a className="btn top-navbar-btn" href={pageLink} onClick={onAnchorClick} {...rest}>
+        <li className="top-navbar-list-item">
+            <a ref={textRef} className="btn top-navbar-btn" href={pageLink} onClick={onAnchorClick} {...rest}>
                 {itemName}
             </a>
+            {(itemName === Pages[selectedPageID]?.title) ? <TwistedThreadsUnderline width={textWidth}/> : null}
         </li>
     );
 }

@@ -1,5 +1,5 @@
 @utility btn {
-    /* layout and positioning */
+    /* Layout and positioning */
     @apply inline-block;
     
     @apply cursor-pointer;
@@ -15,11 +15,15 @@
     }
         
     &:active {
-        @apply translate-x-[1px] translate-y-[1px];
+        @apply translate-x-[2px] translate-y-[2px];
     }
 }
 
 @utility top-navbar-btn {
+    /* Layout and positioning. Relative so we can absolutely position underlines and they will not de-center 
+       nav items vertically. */
+    @apply inline-block;
+
     /* Text */
     @apply font-bold text-body text-dark-mahogany-brown;
 }
