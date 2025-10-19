@@ -1,0 +1,4 @@
+@utility footer {
+    @apply w-full h-20;
+    @apply bg-dark-mahogany-brown text-linen-white;
+}

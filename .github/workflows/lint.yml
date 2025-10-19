@@ -12,7 +12,7 @@ on:
 
 jobs:
     # Define a job, eslint, to run on the GitHub Ubuntu virtual machine.
-    eslint:
+    linting-and-testing:
         runs-on: ubuntu-latest
 
         steps:
@@ -42,3 +42,13 @@ jobs:
             # Run lint script.
             - name: Run ESLint
               run: npm run lint
+
+            - name: Run Jest tests with coverage
+              run: npm run test:coverage
+
+            # Lets us view HTML report from GitHub Actions. Downloadable from actions tab.
+            - name: Upload coverage report
+              uses: actions/upload-artifact@v3
+              with:
+                name: coverage-report
+                path: coverage/lcov-report

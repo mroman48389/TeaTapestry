@@ -6,9 +6,14 @@
 @import "./styles/base.css";
 @import "./styles/theme.css";
 @import "./styles/utilities.css";
-@import "./styles/components/buttons.css";
-@import "./styles/components/nav-sidebar.css";
+
+@import "./styles/components/app.css";
+@import "./styles/components/main.css";
 @import "./styles/components/top-navbar.css";
+@import "./styles/components/nav-sidebar.css";
+@import "./styles/components/footer.css";
+
+@import "./styles/components/buttons.css";
 @import "./styles/components/twisted-threads-underline.css";
 
 /* 

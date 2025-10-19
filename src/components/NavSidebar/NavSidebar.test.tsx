@@ -4,6 +4,8 @@ import NavSidebarToggle from "./NavSidebarToggle";
 import NavSidebarList from "./NavSidebarList";
 import NavSidebar from "./NavSidebar";
 
+import { pageIDs } from "@/constants/pages";
+
 describe("NavSidebar", () => {
     /* Unit tests */
     it("Renders the NavSidebarToggle.", () => {
@@ -12,14 +14,14 @@ describe("NavSidebar", () => {
     });
 
     it("Renders the NavSidebarList.", () => {
-        render(<NavSidebarList open={false}/>);
+        render(<NavSidebarList open={false} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
         expect(screen.getByRole("list")).toBeInTheDocument();
     });
 
     /* Integration tests */
 
     it("Renders toggle and list.", () => {
-        render(<NavSidebar/>);
+        render(<NavSidebar sidebarOpen={false} onOpenSidebar={() => {}} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
         expect(screen.getByRole("button")).toBeInTheDocument();
         expect(screen.getByRole("list")).toBeInTheDocument();
     });

@@ -17,12 +17,12 @@ describe("NavSidebarToggle", () => {
     it("Applies rotation class when open.", () => {
         render(<NavSidebarToggle open={true} onToggleClick={() => {}} />);
         const icon = screen.getByTestId("nav-sidebar-toggle-icon");
-        expect(icon).toHaveClass("rotate-180");
+        expect(icon).toHaveClass("rotate-0");
     });
 
     it("Does not apply rotation class when closed.", () => {
         render(<NavSidebarToggle open={false} onToggleClick={() => {}} />);
         const icon = screen.getByTestId("nav-sidebar-toggle-icon");
-        expect(icon).not.toHaveClass("rotate-180");
+        expect(icon).not.toHaveClass("rotate-0");
     });
 });

@@ -13,6 +13,8 @@
     /* Spacing */
     --spacing-nav: 5rem; /* equivalent to h-20 (20 * 0.25rem = 5rem)  */
     --height-nav: 5rem; /* equivalent to h-20 (20 * 0.25rem = 5rem) */
+    --open-nav-sidebar-width: 292px; /* "w-73" */ 
+    --closed-nav-sidebar-width: 56px; /* "w-14" */
 
     /* Font families */
     --font-body: "Cabin", ui-sans-serif, system-ui, sans-serif;

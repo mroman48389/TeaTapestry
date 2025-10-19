@@ -2,7 +2,6 @@ import { ComponentPropsWithoutRef } from "react";
 
 import TeaTapestryTeapot from '../../assets/tea-tapestry-logo-xi-shi-teapot-200x200.svg';
 import TeaTapestryLogo from "../../assets/tea-tapestry-logo-400x150.svg";
-import { APP_TITLE } from "@/constants/app";
 import { PageID } from "@/constants/pages";
 import TopNavbarList from './TopNavbarList';
 
