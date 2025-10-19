@@ -1,4 +1,7 @@
 @utility footer {
-    @apply w-full h-20;
+    /* Layout and positioning. */
+    @apply w-full h-20 flex items-center;
+
+    /* Text. */
     @apply bg-dark-mahogany-brown text-linen-white;
 }

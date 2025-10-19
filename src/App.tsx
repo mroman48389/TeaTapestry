@@ -7,7 +7,9 @@ import { setSelectedPageID } from "./store/selectedPageSlice";
 import PortalPage from './pages/PortalPage';
 import NavSidebar from './components/NavSidebar/NavSidebar';
 import TopNavbar from './components/TopNavbar/TopNavbar';
+
 import { PageID } from "./constants/pages";
+import { getSidebarWidthOrMarginLeft } from "./utils/class-utils";
 
 // import {
 //     Accordion,
@@ -16,6 +18,7 @@ import { PageID } from "./constants/pages";
 //     AccordionContent,
 // } from "@/components/ui/accordion";
 import Footer from "./components/Footer";
+import { SidebarSettingType } from "./constants/app";
 
 export default function App() {
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -37,9 +40,6 @@ export default function App() {
     }
 
     console.log("App component rendered");
-
-    /* Main's left margin should change depending on if sidebar is open or not. */
-    const mainMarginLeft = sidebarOpen ? "ml-[var(--open-nav-sidebar-width)]": "ml-[var(--closed-nav-sidebar-width)]";
 
     return (
         /*  App is one big vertical flex container that spans the entire viewport height. 
@@ -66,7 +66,7 @@ export default function App() {
             <div className="flex min-h-screen flex-1 overflow-hidden">
                 <NavSidebar selectedPageID={selectedPageID} onSelectPage={handleSetSelectedPageID} sidebarOpen={sidebarOpen} onOpenSidebar={handleOpen}/>
 
-                <main className={`main ${mainMarginLeft}`}>
+                <main className={`main ${getSidebarWidthOrMarginLeft(sidebarOpen, SidebarSettingType.MarginLeft)}`}>
                     <PortalPage/>
                     <h1>Tea Tapestry</h1>
                     <h2>FAQs</h2>
@@ -74,7 +74,7 @@ export default function App() {
                 </main>
             </div>
 
-            <Footer/>
+            <Footer sidebarOpen={sidebarOpen}/>
         </div>
 
         // <>

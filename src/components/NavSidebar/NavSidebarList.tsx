@@ -28,6 +28,7 @@ export default function NavSidebarList(props: NavSidebarListProps) {
     return (
         <>
             <ul 
+                data-testid="nav-sidebar-list"
                 className={`nav-sidebar-list overflow-hidden transition-opacity duration-150 ${open ? "relative opacity-100 delay-150" : "absolute opacity-0"}`}
                 {...rest} 
             > 

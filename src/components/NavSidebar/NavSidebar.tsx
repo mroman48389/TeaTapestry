@@ -2,7 +2,10 @@ import { ComponentPropsWithoutRef } from "react";
 
 import NavSidebarToggle from "./NavSidebarToggle";
 import NavSidebarList from "./NavSidebarList";
+
 import { PageID } from "@/constants/pages";
+import { getSidebarWidthOrMarginLeft } from "@/utils/class-utils";
+import { SidebarSettingType } from "@/constants/app";
 
 type NavSidebarProps = {
     sidebarOpen: boolean;
@@ -21,7 +24,7 @@ export default function NavSidebar(props: NavSidebarProps) {
                 `nav-sidebar 
                 transition-[width] 
                 duration-200 ease-in-out 
-                ${sidebarOpen ? "w-[var(--open-nav-sidebar-width)]" : "w-[var(--closed-nav-sidebar-width)]"}`
+                ${getSidebarWidthOrMarginLeft(sidebarOpen, SidebarSettingType.Width)}`
             }>
                 <NavSidebarToggle 
                     open={sidebarOpen}

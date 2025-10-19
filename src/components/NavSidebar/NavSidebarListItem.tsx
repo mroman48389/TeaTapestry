@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, useRef, useState, useEffect, memo } from "rea
 import TwistedThreadsUnderline from "../TwistedThreadsUnderline";
 import { PageID, Pages } from "@/constants/pages";
 
-type NavSidebarListItemProps = {
+export type NavSidebarListItemProps = {
     pageID: PageID;
     selectedPageID: PageID;
     onSelectPage: (value: PageID) => void;
@@ -39,7 +39,7 @@ function NavSidebarListItem(props: NavSidebarListItemProps) {
     console.log('NavSidebarListItem rendered. ' + 'Item name: ' + itemName + '. ' + 'Selected page ID:' + selectedPageID + '. ' + 'Title: ' + Pages[selectedPageID]?.title);
 
     return (
-        <li className="nav-sidebar-list-item">
+        <li data-testid="nav-sidebar-list-item" className="nav-sidebar-list-item">
             <a ref={textRef} className="btn" href={pageLink} onClick={onAnchorClick} {...rest}>
                 {itemName}
             </a>

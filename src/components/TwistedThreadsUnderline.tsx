@@ -2,6 +2,7 @@ import { ComponentProps } from 'react';
 import { motion }  from 'motion/react';
 
 import { APP_COLORS } from '@/constants/app';
+import { generateFixedWavePath } from '@/utils/svg-utils';
 
 type TwistedThreadsUnderlineProps = {
     width: number;
@@ -9,34 +10,6 @@ type TwistedThreadsUnderlineProps = {
 
 export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlineProps) {
     const {width, ...rest} = props;
-
-    const isHovered = true;
-    const isActive = true;
-
-    function generateFixedWavePath(segmentCount: number = 20, segmentWidth: number = 15, amplitude: number = 8): string {
-        let path = `M0 10`; /* M= (M)ove to x = 0, y = 10 */
-      
-        for (let i = 0; i < segmentCount; i++) {
-            /* Starting x position */
-            const startX = i * segmentWidth;
-
-            /* (C)ontrol (p)oints for Bezier curve. Control point 1 is the crest and control point 2 is the trough. */
-            const cp1X = startX + segmentWidth / 3; 
-            const cp1Y = 10 - amplitude;
-
-            const cp2X = startX + 2 * segmentWidth / 3; 
-            const cp2Y = 10 + amplitude;
-
-            /* Ending position */
-            const endX = startX + segmentWidth;
-            const endY = 10;
-      
-            /* Add cubic Bezier curve to path. C = (C)urve to. */
-            path += ` C${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
-        }
-      
-        return path;
-    }
 
     const segmentWidth = 50; /* higher number = more stretched out waves */
     const segmentCount = Math.ceil(width / segmentWidth); // ensures full segment coverage
@@ -46,14 +19,14 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
     const bottomPath = generateFixedWavePath(segmentCount, segmentWidth, -amplitude); // reversed amplitude
 
     return (
-        <div className="twisted-threads-underline">
+        <div data-testid="twisted-threads-underline" className="twisted-threads-underline">
             <motion.svg
                 width={totalPathWidth}
                 height="20" 
                 aria-hidden="true"
                 viewBox={`0 0 ${totalPathWidth} 20`}
                 initial="hidden"
-                animate={isHovered || isActive ? "visible" : "hidden"}
+                animate={"visible"}
                 variants={{
                     hidden: { pathLength: 0, opacity: 0 },
                     visible: { pathLength: 1, opacity: 1 }
