@@ -1,4 +1,4 @@
-export default function TeawareTeaPage() {
+export default function TeawarePage() {
 
     return (<></>);
 }

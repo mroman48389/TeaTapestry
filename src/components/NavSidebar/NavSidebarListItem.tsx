@@ -1,13 +1,17 @@
-import { ComponentPropsWithoutRef, useRef, useState, useEffect, memo } from "react";
+import { useRef, useState, useEffect, memo } from "react";
+
+import { Link, LinkProps } from "react-router-dom";
 
 import TwistedThreadsUnderline from "../TwistedThreadsUnderline";
 import { PageID, Pages } from "@/constants/pages";
 
+/* Using ComponentPropsWithoutRef<typeof Link> (previously ComponentPropsWithoutRef<"a">) will make TypeScript try
+   to force us to implement the "to" property for Link, so inherit only certain props instead. */
 export type NavSidebarListItemProps = {
     pageID: PageID;
     selectedPageID: PageID;
     onSelectPage: (value: PageID) => void;
-} & ComponentPropsWithoutRef<"a">;
+} & Partial<Pick<LinkProps, "className" | "style" | "target" | "rel">>;
 
 function NavSidebarListItem(props: NavSidebarListItemProps) {
     /* Create ref for direct access to anchor element so we can grab info from it (the offsetWidth DOM measurement). We 
@@ -29,20 +33,28 @@ function NavSidebarListItem(props: NavSidebarListItemProps) {
         }
     }, [itemName]);    
 
-    function onAnchorClick(e: React.MouseEvent<HTMLAnchorElement>) {
-        /* Prevent browser from navigating; we'll handle it with React Router ourselves. If we let the browser do this,
-           it will navigate to a new URL, reload the app, and wipe out our state. */
-        e.preventDefault(); 
-        onSelectPage(pageID);
-    }
+    // No longer needed, since React Router handles it.
+    // function onAnchorClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    //     /* Prevent browser from navigating; we'll handle it with React Router ourselves. If we let the browser do this,
+    //        it will navigate to a new URL, reload the app, and wipe out our state. */
+    //     e.preventDefault(); 
+    //     onSelectPage(pageID);
+    // }
 
     console.log('NavSidebarListItem rendered. ' + 'Item name: ' + itemName + '. ' + 'Selected page ID:' + selectedPageID + '. ' + 'Title: ' + Pages[selectedPageID]?.title);
 
     return (
         <li data-testid="nav-sidebar-list-item" className="nav-sidebar-list-item">
-            <a ref={textRef} className="btn" href={pageLink} onClick={onAnchorClick} {...rest}>
+            {/* Note that React Router requires casting refs. */}
+            <Link 
+                ref={textRef as React.Ref<HTMLAnchorElement>} 
+                className="btn" 
+                {...rest}
+                to={pageLink} 
+                onClick={() => onSelectPage(pageID)} 
+            >
                 {itemName}
-            </a>
+            </Link>
             {(itemName === Pages[selectedPageID]?.title) ? <TwistedThreadsUnderline width={textWidth}/> : null}
         </li>
     );

@@ -1,22 +1,28 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "./store/store";
 import { setSelectedPageID } from "./store/selectedPageSlice";
 
-import PortalPage from './pages/PortalPage';
+import { Routes, Route, useLocation } from "react-router-dom";
+
 import NavSidebar from './components/NavSidebar/NavSidebar';
 import TopNavbar from './components/TopNavbar/TopNavbar';
+import Home from "./pages/HomePage";
+import WhatIsTeaPage from "./pages/WhatIsTeaPage";
+import WhereDoesTeaComeFromPage from "./pages/WhereDoesTeaComeFromPage";
+import GrowingProcessingPage from "./pages/GrowingProcessingPage";
+import BrewingMethodsPage from "./pages/BrewingMethodsPage";
+import ExperiencingTeaPage from "./pages/ExperiencingTeaPage";
+import TeaProfilesPage from "./pages/TeaProfilesPage";
+import TeawarePage from "./pages/TeawarePage";
+import TeaTerminologyPage from "./pages/TeaTerminologyPage";
+import FAQsPage from "./pages/FAQsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
-import { PageID } from "./constants/pages";
+import { Pages, PageID, pageIDs } from "./constants/pages";
 import { getSidebarWidthOrMarginLeft } from "./utils/class-utils";
 
-// import {
-//     Accordion,
-//     AccordionItem,
-//     AccordionTrigger,
-//     AccordionContent,
-// } from "@/components/ui/accordion";
 import Footer from "./components/Footer";
 import { SidebarSettingType } from "./constants/app";
 
@@ -27,6 +33,13 @@ export default function App() {
     // const [selectedPageID, setSelectedPageID] = useState<PageID>(pageIDs.home);
     const selectedPageID = useSelector((state: RootState) => state.selectedPage);
     const dispatch = useDispatch();
+
+    const location = useLocation();
+
+    /* Reset scroll to the top if the user navigates to a new page. */
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
 
     /* Memoize the page selection handler to prevent unnecessary re-renders of memoized child components.
         Without useCallback, this function would be re-created on every render, causing props like onSelectPage
@@ -67,59 +80,23 @@ export default function App() {
                 <NavSidebar selectedPageID={selectedPageID} onSelectPage={handleSetSelectedPageID} sidebarOpen={sidebarOpen} onOpenSidebar={handleOpen}/>
 
                 <main className={`main ${getSidebarWidthOrMarginLeft(sidebarOpen, SidebarSettingType.MarginLeft)}`}>
-                    <PortalPage/>
-                    <h1>Tea Tapestry</h1>
-                    <h2>FAQs</h2>
-
+                    <Routes>
+                        <Route path={Pages[pageIDs.home].path} element={<Home/>}/>
+                        <Route path={Pages[pageIDs.whatIsTea].path} element={<WhatIsTeaPage/>}/>
+                        <Route path={Pages[pageIDs.whereDoesTeaComeFrom].path} element={<WhereDoesTeaComeFromPage/>}/>
+                        <Route path={Pages[pageIDs.growingAndProcessing].path} element={<GrowingProcessingPage/>}/>
+                        <Route path={Pages[pageIDs.brewingMethods].path} element={<BrewingMethodsPage/>}/>
+                        <Route path={Pages[pageIDs.experiencingTea].path} element={<ExperiencingTeaPage/>}/>
+                        <Route path={Pages[pageIDs.teaProfiles].path} element={<TeaProfilesPage/>}/>
+                        <Route path={Pages[pageIDs.teaware].path} element={<TeawarePage/>}/>
+                        <Route path={Pages[pageIDs.teaTerminology].path} element={<TeaTerminologyPage/>}/>
+                        <Route path={Pages[pageIDs.FAQs].path} element={<FAQsPage/>}/>
+                        <Route path={Pages[pageIDs.notFound].path} element={<NotFoundPage/>}/>
+                    </Routes>
                 </main>
             </div>
 
             <Footer sidebarOpen={sidebarOpen}/>
         </div>
-
-        // <>
-        //     <div>
-        //         <a href="https://vite.dev" target="_blank" rel="noreferrer">
-        //             <img src={viteLogo} className="logo" alt="Vite logo" />
-        //         </a>
-            
-        //         <a href="https://react.dev" target="_blank" rel="noreferrer">
-        //             <img src={reactLogo} className="logo react" alt="React logo" />
-        //         </a>
-        //     </div>
-        
-        //     <h1>Vite + React</h1>
-            
-        //     <div className="card">
-        //         <button onClick={() => setCount((count) => count + 1)}>
-        //             count is {count}
-        //         </button>
-        //         <p>
-        //             Edit <code>src/App.tsx</code> and save to test HMR
-        //         </p>
-        //     </div>
-        
-        //     <p className="read-the-docs">
-        //         Click on the Vite and React logos to learn more
-        //     </p>
-        // </>
-
-
-
-    //     <Accordion type="single" collapsible className="w-full">
-    //     <AccordionItem value="item-1">
-    //         <AccordionTrigger className='font-bold'>What is Tea Tapestry?</AccordionTrigger>
-    //         <AccordionContent>
-    //             Tea Tapestry is my demo project — this accordion is powered by shadcn + Radix.
-    //         </AccordionContent>
-    //     </AccordionItem>
-
-    //     <AccordionItem value="item-2">
-    //         <AccordionTrigger>Does it work?</AccordionTrigger>
-    //         <AccordionContent>
-    //             Yes! If you can expand and collapse these sections, shadcn is set up correctly.
-    //         </AccordionContent>
-    //     </AccordionItem>
-    // </Accordion>
     );
 }

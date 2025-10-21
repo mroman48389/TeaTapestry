@@ -1,8 +1,10 @@
 import { render, screen } from "@testing-library/react";
-// import {  fireEvent } from "@testing-library/react";
+
 import NavSidebarToggle from "./NavSidebarToggle";
 import NavSidebarList from "./NavSidebarList";
 import NavSidebar from "./NavSidebar";
+
+import { renderWithRouter } from "@/utils/test-utils";
 
 import { pageIDs } from "@/constants/pages";
 
@@ -14,14 +16,14 @@ describe("NavSidebar", () => {
     });
 
     it("Renders the NavSidebarList.", () => {
-        render(<NavSidebarList open={false} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
+        renderWithRouter(<NavSidebarList open={false} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
         expect(screen.getByRole("list")).toBeInTheDocument();
     });
 
     /* Integration tests */
 
     it("Renders toggle and list.", () => {
-        render(<NavSidebar sidebarOpen={false} onOpenSidebar={() => {}} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
+        renderWithRouter(<NavSidebar sidebarOpen={false} onOpenSidebar={() => {}} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
         expect(screen.getByRole("button")).toBeInTheDocument();
         expect(screen.getByRole("list")).toBeInTheDocument();
     });

@@ -4,6 +4,8 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './store/store'; 
 
+import { BrowserRouter } from "react-router-dom";
+
 /* npm install @fontsource/cabin */
 import "@fontsource/cabin/400.css"; // body text, paragraphs, UI labels
 import "@fontsource/cabin/500.css"; // slightly emphasized text, subheadings, or buttons
@@ -24,7 +26,9 @@ createRoot(rootElement).render(
     <StrictMode>
         {/* Make variables in store available to entire app. */}
         <Provider store={store}>
-            <App/>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
         </Provider>
     </StrictMode>,
 );

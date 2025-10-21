@@ -10,11 +10,14 @@ export const pageIDs = {
     teaProfiles          : 'TEA_PROFILES',
     teaware              : 'TEAWARE',
     teaTerminology       : 'TEA_TERMINOLOGY',
+    FAQs                 : 'FAQS',
     
     about                : 'ABOUT',
     whatsNew             : 'WHATS_NEW',
     contact              : 'CONTACT',
     logIn                : 'LOG_IN',
+
+    notFound             : 'NOT_FOUND',
 } as const;
   
 /*  PageKey: A type alias that extracts the keys from the pageIDs object as a union type (equivalent to
@@ -83,9 +86,14 @@ export const Pages: Record<typeof pageIDs[PageKey], PageMeta> = {
         path  : '/terminology',
     },
 
+    [pageIDs.FAQs]: {
+        title : 'FAQs',
+        path  : '/FAQs',
+    },
+
     [pageIDs.about]: {
         title : 'About',
-        path  : '/terminology',
+        path  : '/about',
     },
 
     [pageIDs.whatsNew]: {
@@ -101,6 +109,11 @@ export const Pages: Record<typeof pageIDs[PageKey], PageMeta> = {
     [pageIDs.logIn]: {
         title : 'Log in',
         path  : '/log-in',
+    },
+
+    [pageIDs.notFound]: {
+        title : 'Not found',
+        path  : '*',
     },
 
 } as const;
