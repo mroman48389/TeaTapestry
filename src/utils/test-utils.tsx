@@ -35,32 +35,25 @@ export function createMemoizedComponentWithSpy<TProps extends JSX.IntrinsicAttri
         return withRouter ? <MemoryRouter>{element}</MemoryRouter> : element;
     };
 
-    /*  Get a name for the component, either,
-
-            1. displayName: From the user (passed in as a parameter)
-            2. (Component as any).displayName: From an already-set displayName on the original component.
-            3. (Component as any).name: From the function name of the component.
-            4. Component: Avoids undefined/empty names as a last resort.
-
-        Component is cast as any because TypeScript doesn't guarantee is has displayName or name and this
-        lets us safely access those properties.
-    */
-
-    /* Declare type for components that might have displayName. */
+    /* Declare type for components that might have displayName. Takes any React component that accepts TProps. */
     type ComponentWithDisplayName = React.ComponentType<TProps> & {
         displayName?: string;
         name?: string;
     };
 
     let componentName = "Component"; // Default fallback
+    /* Gain access to displayName and name for Component while avoiding TypeScript errors. */
     const typedComponent = Component as ComponentWithDisplayName;
     
+    /* If the display name was passed into the function, use that. */
     if (displayName) {
         componentName = displayName;
     } 
+    /* Otherwise, if a displayName was set on the Component, use that. */
     else if (typedComponent.displayName) {
         componentName = typedComponent.displayName;
     } 
+    /* Otherwise, if Component is a functional Component and not and not an anonymous arrow function, use the Component name. */
     else if (typeof Component === "function" && typedComponent.name) {
         componentName = typedComponent.name;
     }

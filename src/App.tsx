@@ -18,6 +18,12 @@ import TeaProfilesPage from "./pages/TeaProfilesPage";
 import TeawarePage from "./pages/TeawarePage";
 import TeaTerminologyPage from "./pages/TeaTerminologyPage";
 import FAQsPage from "./pages/FAQsPage";
+
+import AboutPage from "./pages/AboutPage";
+import WhatsNewPage from "./pages/WhatsNewPage";
+import ContactPage from "./pages/ContactPage";
+import LogInPage from "./pages/LogInPage";
+
 import NotFoundPage from "./pages/NotFoundPage";
 
 import { Pages, PageID, pageIDs } from "./constants/pages";
@@ -91,6 +97,12 @@ export default function App() {
                         <Route path={Pages[pageIDs.teaware].path} element={<TeawarePage/>}/>
                         <Route path={Pages[pageIDs.teaTerminology].path} element={<TeaTerminologyPage/>}/>
                         <Route path={Pages[pageIDs.FAQs].path} element={<FAQsPage/>}/>
+
+                        <Route path={Pages[pageIDs.about].path} element={<AboutPage/>}/>
+                        <Route path={Pages[pageIDs.whatsNew].path} element={<WhatsNewPage/>}/>
+                        <Route path={Pages[pageIDs.contact].path} element={<ContactPage/>}/>
+                        <Route path={Pages[pageIDs.logIn].path} element={<LogInPage/>}/>
+
                         <Route path={Pages[pageIDs.notFound].path} element={<NotFoundPage/>}/>
                     </Routes>
                 </main>

@@ -18,7 +18,7 @@ export default function TopNavbarList(props: TopNavbarListProps) {
 
     return (
         <nav className="flex" aria-label="Top navbar">
-            <ul className="top-navbar-list" {...rest}> 
+            <ul data-testid="top-navbar-list" className="top-navbar-list" {...rest}> 
                 <TopNavbarListItem 
                     pageID={pageIDs.home}
                     selectedPageID={selectedPageID}

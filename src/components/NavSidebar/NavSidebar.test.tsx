@@ -9,34 +9,25 @@ import { renderWithRouter } from "@/utils/test-utils";
 import { pageIDs } from "@/constants/pages";
 
 describe("NavSidebar", () => {
+
     /* Unit tests */
-    it("Renders the NavSidebarToggle.", () => {
+
+    it("Unit test: Renders the NavSidebarToggle.", () => {
         render(<NavSidebarToggle open={false} onToggleClick={() => {}}/>);
         expect(screen.getByRole("button")).toBeInTheDocument();
     });
 
-    it("Renders the NavSidebarList.", () => {
-        renderWithRouter(<NavSidebarList open={false} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
+    it("Unit test: Renders the NavSidebarList.", () => {
+        renderWithRouter(<NavSidebarList open={false} selectedPageID={pageIDs.whatIsTea} onSelectPage={() => {}}/>);
         expect(screen.getByRole("list")).toBeInTheDocument();
     });
 
     /* Integration tests */
 
-    it("Renders toggle and list.", () => {
-        renderWithRouter(<NavSidebar sidebarOpen={false} onOpenSidebar={() => {}} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
+    it("Integration test: Renders NavSidebar with NavSidebarToggle and NavSidebarList.", () => {
+        renderWithRouter(<NavSidebar sidebarOpen={false} onOpenSidebar={() => {}} selectedPageID={pageIDs.whatIsTea} onSelectPage={() => {}}/>);
         expect(screen.getByRole("button")).toBeInTheDocument();
         expect(screen.getByRole("list")).toBeInTheDocument();
     });
 
-    // it("Applies larger width class when open.", () => {
-    //     render(<NavSidebarToggle open={true} onToggleClick={() => {}} />);
-    //     const icon = screen.getByTestId("nav-sidebar-toggle-icon");
-    //     expect(icon).toHaveClass("rotate-180");
-    // });
-
-    // it("Applies smaller width class when closed.", () => {
-    //     render(<NavSidebarToggle open={false} onToggleClick={() => {}} />);
-    //     const icon = screen.getByTestId("nav-sidebar-toggle-icon");
-    //     expect(icon).not.toHaveClass("rotate-180");
-    // });
 });
