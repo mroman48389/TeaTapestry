@@ -1,7 +1,6 @@
 /*  pageIDs: A constant object that maps semantic page identifiers (the keys) to symbolic string values.
     These values act as stable, type-safe keys for routing, metadata, analytics, and onboarding logic. */
 export const pageIDs = {
-    home                 : 'HOME', // sidebar and navbar
     whatIsTea            : 'WHAT_IS_TEA',
     whereDoesTeaComeFrom : 'WHERE_DOES_TEA_COME_FROM',
     growingAndProcessing : 'GROWING_AND_PROCESSING',
@@ -12,6 +11,7 @@ export const pageIDs = {
     teaTerminology       : 'TEA_TERMINOLOGY',
     FAQs                 : 'FAQS',
     
+    home                 : 'HOME', 
     about                : 'ABOUT',
     whatsNew             : 'WHATS_NEW',
     contact              : 'CONTACT',
@@ -41,11 +41,6 @@ interface PageMeta {
 
 /*  Pages: A metadata map providing full  IntelliSense, compile-time validation, and centralized control over page behavior. */
 export const Pages: Record<typeof pageIDs[PageKey], PageMeta> = {
-    [pageIDs.home]: {
-        title : 'Home',
-        path  : '/',
-    },
-
     [pageIDs.whatIsTea]: {
         title : 'What is tea?',
         path  : '/what-is-tea',
@@ -89,6 +84,11 @@ export const Pages: Record<typeof pageIDs[PageKey], PageMeta> = {
     [pageIDs.FAQs]: {
         title : 'FAQs',
         path  : '/FAQs',
+    },
+
+    [pageIDs.home]: {
+        title : 'Home',
+        path  : '/',
     },
 
     [pageIDs.about]: {

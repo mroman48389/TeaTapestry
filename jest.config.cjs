@@ -7,4 +7,12 @@ module.exports = {
         "^@/(.*)$": "<rootDir>/src/$1",
         '\\.(svg|png|jpg|jpeg|gif)$': '<rootDir>/__mocks__/fileMock.js',
     },
+    coveragePathIgnorePatterns: [
+        "/node_modules/",
+        "<rootDir>/src/components/ui/"
+    ],
+    testPathIgnorePatterns: [
+        "/node_modules/",
+        "<rootDir>/src/components/ui/"
+    ],
 };

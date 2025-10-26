@@ -1,12 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import TopNavbarListItem from "./TopNavbarListItem";
+import NavListItem from "./NavListItem";
 
 import { renderWithRouter, createMemoizedComponentWithSpy } from "@/utils/test-utils";
 
 import { pageIDs } from "@/constants/pages";
 
-describe("TopNavbarListItem", () => {
+describe("NavListItem", () => {
 
     /* Unit tests */
 
@@ -14,7 +14,7 @@ describe("TopNavbarListItem", () => {
         const mockSelect = jest.fn();
     
         renderWithRouter(
-            <TopNavbarListItem
+            <NavListItem
                 pageID={pageIDs.about}
                 selectedPageID={pageIDs.about}
                 onSelectPage={mockSelect}
@@ -30,10 +30,10 @@ describe("TopNavbarListItem", () => {
 
     it("Unit test, Memoization: Does not re-render when props are unchanged.", () => {
         const options = {
-            displayName: "MemoizedTopNavbarListItem",
+            displayName: "MemoizedNavListItem",
             withRouter: true,
         };
-        const { Memoized, spy } = createMemoizedComponentWithSpy(TopNavbarListItem, options);
+        const { Memoized, spy } = createMemoizedComponentWithSpy(NavListItem, options);
 
         const onSelectPage = () => {};
 
@@ -60,10 +60,10 @@ describe("TopNavbarListItem", () => {
         const onSelectPage = () => {};
 
         const options = {
-            displayName: "MemoizedTopNavbarListItem",
+            displayName: "MemoizedNavListItem",
             withRouter: true,
         };
-        const { Memoized, spy } = createMemoizedComponentWithSpy(TopNavbarListItem, options);
+        const { Memoized, spy } = createMemoizedComponentWithSpy(NavListItem, options);
 
         const { rerender } = render(
             <Memoized
@@ -86,10 +86,10 @@ describe("TopNavbarListItem", () => {
 
     it("Unit test, Memoization: Re-renders when onSelectPage changes but page selection stays the same.", () => {
         const options = {
-            displayName: "MemoizedTopNavbarListItem",
+            displayName: "MemoizedNavListItem",
             withRouter: true,
         };
-        const { Memoized, spy } = createMemoizedComponentWithSpy(TopNavbarListItem, options);
+        const { Memoized, spy } = createMemoizedComponentWithSpy(NavListItem, options);
 
         const firstCallback = () => {};
         const secondCallback = () => {}; // different reference
@@ -115,15 +115,25 @@ describe("TopNavbarListItem", () => {
 
     /* Integration tests */
 
-    it("Integration test: Renders the TopNavbarListItem with the same pageID as selectedPageID.", () => {
-        renderWithRouter(<TopNavbarListItem pageID={pageIDs.about} selectedPageID={pageIDs.about} onSelectPage={() => {}}/>);
-        expect(screen.getByTestId("top-navbar-list-item")).toBeInTheDocument();
+    it("Integration test: Renders the NavListItem with the same pageID as selectedPageID.", () => {
+        renderWithRouter(
+            <NavListItem 
+                pageID={pageIDs.about} 
+                selectedPageID={pageIDs.about} 
+                onSelectPage={() => {}}
+            />
+        );
         expect(screen.getByTestId("twisted-threads-underline")).toBeInTheDocument();
     });
 
-    it("Integration test: Renders the TopNavbarListItem with a different pageID than selectedPageID.", () => {
-        renderWithRouter(<TopNavbarListItem pageID={pageIDs.about} selectedPageID={pageIDs.brewingMethods} onSelectPage={() => {}}/>);
-        expect(screen.getByTestId("top-navbar-list-item")).toBeInTheDocument();
+    it("Integration test: Renders the NavListItem with a different pageID than selectedPageID.", () => {
+        renderWithRouter(
+            <NavListItem 
+                pageID={pageIDs.about}
+                selectedPageID={pageIDs.brewingMethods} 
+                onSelectPage={() => {}}
+            />
+        );
         /* Note use of queryByTestId, since we expect the conditionally rendered threads underline to not be present. */
         expect(screen.queryByTestId("twisted-threads-underline")).not.toBeInTheDocument();
     });

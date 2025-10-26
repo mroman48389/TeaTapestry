@@ -2,26 +2,28 @@ import { useRef, useState, useEffect, memo } from "react";
 
 import { Link, LinkProps } from "react-router-dom";
 
-import TwistedThreadsUnderline from "../TwistedThreadsUnderline";
-import { PageID, Pages } from "@/constants/pages";
+import TwistedThreadsUnderline from "./TwistedThreadsUnderline";
+import { Pages, PageID } from "@/constants/pages";
 
-/* Using ComponentPropsWithoutRef<typeof Link> (previously ComponentPropsWithoutRef<"a">) will make TypeScript try
-   to force us to implement the "to" property for Link, so inherit only certain props instead. */
-export type NavSidebarListItemProps = {
+type NavListItemProps = {
+    forceVisible? : boolean;
+    liClassName? : string;
+    linkClassName? : string;
     pageID: PageID;
     selectedPageID: PageID;
     onSelectPage: (value: PageID) => void;
 } & Partial<Pick<LinkProps, "className" | "style" | "target" | "rel">>;
 
-function NavSidebarListItem(props: NavSidebarListItemProps) {
+/* List item that can be used for navigation on the top navbar, nav sidebar, or hamburger menu sheet for mobile. */
+function NavListItem(props: NavListItemProps) {
     /* Create ref for direct access to anchor element so we can grab info from it (the offsetWidth DOM measurement). We 
-       Can't use useState to hold a DOM node directly, since React doesn't know when the DOM is ready. We'd end up
-       triggering unncessary re-renders if we tried. This reference will persist across renders. */
+        Can't use useState to hold a DOM node directly, since React doesn't know when the DOM is ready. We'd end up
+        triggering unncessary re-renders if we tried. This reference will persist across renders. */
     const textRef = useRef<HTMLAnchorElement>(null);
     const [textWidth, setTextWidth] = useState(0);
-  
-    const {pageID, selectedPageID, onSelectPage, ...rest} = props;
 
+    const {forceVisible = false, liClassName = "", linkClassName = "", pageID, selectedPageID, onSelectPage, ...rest} = props;
+    
     const itemName = Pages[pageID].title;
     const pageLink = Pages[pageID].path;
 
@@ -41,20 +43,20 @@ function NavSidebarListItem(props: NavSidebarListItemProps) {
     //     onSelectPage(pageID);
     // }
 
-    console.log('NavSidebarListItem rendered. ' + 'Item name: ' + itemName + '. ' + 'Selected page ID:' + selectedPageID + '. ' + 'Title: ' + Pages[selectedPageID]?.title);
-
     return (
-        <li data-testid="nav-sidebar-list-item" className="nav-sidebar-list-item">
+        <li data-testid="nav-list-item" className={`${liClassName} ${forceVisible ? 'list-item' : ''}`}>
+
             {/* Note that React Router requires casting refs. */}
             <Link 
                 ref={textRef as React.Ref<HTMLAnchorElement>} 
-                className="btn" 
+                className={`btn ${linkClassName}`}
                 {...rest}
                 to={pageLink} 
                 onClick={() => onSelectPage(pageID)} 
             >
                 {itemName}
             </Link>
+
             {(itemName === Pages[selectedPageID]?.title) ? <TwistedThreadsUnderline width={textWidth}/> : null}
         </li>
     );
@@ -62,7 +64,7 @@ function NavSidebarListItem(props: NavSidebarListItemProps) {
 
 /* Only re-render if the selection status changed (item was selected and now isn't or vice versa) or onSelectPage changed 
     (it  shouldn't since it's also memoized). */
-export default memo(NavSidebarListItem, (prev, next) => {
+export default memo(NavListItem, (prev, next) => {
     const wasSelected = prev.pageID === prev.selectedPageID;
     const isSelected = next.pageID === next.selectedPageID;
     const selectionChanged = wasSelected !== isSelected;

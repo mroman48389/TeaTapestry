@@ -17,11 +17,11 @@
 
 @utility top-navbar-list {
     /* Layout and positioning. Note that we're not using gap-x-6 anymore because it's more difficult to change the gap for just one
-       list item using gap in Tailwind. Instead, use space-x. */
-    @apply flex items-center space-x-10 mr-5;
+       list item using gap in Tailwind. Instead, use space-x. Apply larger space-x at larger screens since we have more space.*/
+    @apply flex items-center space-x-8 md:space-x-8 xl:space-x-10 mr-5;
 }
 
 @utility top-navbar-list-item {
     /* Layout and positioning. Relative so we can absolutely position underlines and they will not move nav items. */
-    @apply relative;
+    @apply hidden md:list-item relative;
 }

@@ -19,7 +19,7 @@ export default function NavSidebar(props: NavSidebarProps) {
     const {sidebarOpen, onOpenSidebar, selectedPageID, onSelectPage, ...rest} = props;
 
     return (
-        <nav aria-label="Nav sidebar" {...rest}>
+        <nav aria-label="Nav sidebar" className="hidden md:block"{...rest}>
             <div className={
                 `nav-sidebar 
                 transition-[width] 

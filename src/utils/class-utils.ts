@@ -2,9 +2,9 @@ import { SidebarSettingType } from "@/constants/app";
 
 export function getSidebarWidthOrMarginLeft(sidebarOpen: boolean, setting: SidebarSettingType) {
     if (setting === SidebarSettingType.Width) {
-        return sidebarOpen ? "w-[var(--open-nav-sidebar-width)]": "w-[var(--closed-nav-sidebar-width)]";
+        return sidebarOpen ? "md:w-[var(--open-nav-sidebar-width)]": "md:w-[var(--closed-nav-sidebar-width)]";
     }
     else {
-        return sidebarOpen ? "ml-[var(--open-nav-sidebar-width)]": "ml-[var(--closed-nav-sidebar-width)]";
+        return sidebarOpen ? "md:ml-[var(--open-nav-sidebar-width)]": "md:ml-[var(--closed-nav-sidebar-width)]";
     }
 }

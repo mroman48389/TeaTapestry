@@ -2,7 +2,7 @@
 import { ComponentPropsWithoutRef } from "react";
 
 import { pageIDs, PageID } from "@/constants/pages";
-import NavSidebarListItem from "./NavSidebarListItem";
+import NavListItem from "../NavListItem";
 
 type NavSidebarListProps = {
     open: boolean;
@@ -13,6 +13,7 @@ type NavSidebarListProps = {
 export default function NavSidebarList(props: NavSidebarListProps) {
     const {open, selectedPageID, onSelectPage, ...rest} = props;
 
+    const liClassName = "nav-sidebar-list-item";
 
     /*  The following makes the text appear less clunky when the sidebar opens/closes.
 
@@ -32,50 +33,60 @@ export default function NavSidebarList(props: NavSidebarListProps) {
                 className={`nav-sidebar-list overflow-hidden transition-opacity duration-150 ${open ? "relative opacity-100 delay-150" : "absolute opacity-0"}`}
                 {...rest} 
             > 
-                <NavSidebarListItem 
-                    selectedPageID={selectedPageID}
-                    onSelectPage={onSelectPage}
-                    pageID={pageIDs.home}
-                />
-                <NavSidebarListItem 
+                <NavListItem 
                     selectedPageID={selectedPageID}
                     onSelectPage={onSelectPage}
                     pageID={pageIDs.whatIsTea}
+                    liClassName={liClassName}
                 />
-                <NavSidebarListItem 
+
+                <NavListItem 
                     selectedPageID={selectedPageID}
                     onSelectPage={onSelectPage}
                     pageID={pageIDs.whereDoesTeaComeFrom}
+                    liClassName={liClassName}
                 />
-                <NavSidebarListItem 
+
+                <NavListItem 
                     selectedPageID={selectedPageID}
                     onSelectPage={onSelectPage}
                     pageID={pageIDs.growingAndProcessing}
+                    liClassName={liClassName}
                 />
-                <NavSidebarListItem 
+
+                <NavListItem 
                     selectedPageID={selectedPageID}
                     onSelectPage={onSelectPage}
                     pageID={pageIDs.brewingMethods}
+                    liClassName={liClassName}
                 />
-                <NavSidebarListItem 
+
+                <NavListItem 
                     selectedPageID={selectedPageID}
                     onSelectPage={onSelectPage}
                     pageID={pageIDs.experiencingTea}
+                    liClassName={liClassName}
                 />
-                <NavSidebarListItem 
+                
+                <NavListItem 
                     selectedPageID={selectedPageID}
                     onSelectPage={onSelectPage}
                     pageID={pageIDs.teaProfiles}
+                    liClassName={liClassName}
                 />
-                <NavSidebarListItem 
+
+                <NavListItem 
                     selectedPageID={selectedPageID}
                     onSelectPage={onSelectPage}
                     pageID={pageIDs.teaware}
+                    liClassName={liClassName}
                 />
-                <NavSidebarListItem 
+
+                <NavListItem 
                     selectedPageID={selectedPageID}
                     onSelectPage={onSelectPage}
                     pageID={pageIDs.teaTerminology}
+                    liClassName={liClassName}
                 />
             </ul>
         </>

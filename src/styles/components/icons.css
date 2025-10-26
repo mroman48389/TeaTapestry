@@ -1,0 +1,7 @@
+@utility icon {
+    /* Override MUI's sizing. */
+    @apply !h-8 !w-8; 
+
+    /* Text. */
+    @apply text-dark-mahogany-brown;
+}
