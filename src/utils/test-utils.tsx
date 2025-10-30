@@ -66,51 +66,57 @@ export function createMemoizedComponentWithSpy<TProps extends JSX.IntrinsicAttri
     return { Memoized, spy };
 }
 
+/* Fully functional mock for window.matchMedia that supports listener registration and manual triggering. Needed for 
+   components that rely on media query changes (e.g., responsive behavior in useEffect). */
+export const setUpMatchMediaMock = (initialMatches: boolean) => {
+    /* Create a listenery registry that is a set of functions that take an event object, e and return nothing. */
+    let listeners = new Set<(e: { matches: boolean }) => void>();
 
+    /* Mimics the shape of MediaQueryList. */
+    const mockMediaQueryList = {
+        matches: initialMatches,
+        media: "(min-width: 768px)",
+        onchange: null,
+        
+        /* Deprecated. */
+        addListener: (handler: (e: { matches: boolean }) => void) => listeners.add(handler),
+        removeListener: (handler: (e: { matches: boolean }) => void) => listeners.delete(handler),
+        
+        /* Modern versions of deprecated listeners. */
+        addEventListener: (type: string, handler: (e: { matches: boolean }) => void) => {
+            if (type === 'change') {
+                listeners.add(handler);
+            }
+        },
+        removeEventListener: (type: string, handler: (e: { matches: boolean }) => void) => {
+            if (type === 'change') {
+                listeners.delete(handler);
+            }
+        },
 
-// export function createMemoizedComponentWithSpy<T extends JSXElementConstructor<any>>(
-//     Component: T,
-//     options: { 
-//         withRouter?: boolean; 
-//         displayName?: string 
-//     } = {}
-// ) {
-//     const spy = jest.fn();
-//     const { withRouter = false, displayName } = options;
+        dispatchEvent: jest.fn(),
+    };
 
-//     /*  React.ComponentProps<T>: Extracts the prop types from component T.
+    /* Override the global window.matchMedia with the mock, returning the mock object is the query matches and a 
+       fallback object otherwise. */
+    Object.defineProperty(window, 'matchMedia', {
+        writable: true,
+        value: jest.fn((query) => {
+            return query === mockMediaQueryList.media ? mockMediaQueryList : { matches: false, media: query };
+        }),
+    });
 
-//         PropsWithRef<React.ComponentProps<T>>: Wraps the prop types to include ref support in case the 
-//             memoized wrapper needs a ref forwarded by a React component.
+    /* Return manual trigger to simulate screen size change. */
+    return {
+        triggerChange: (newMatches: boolean) => {
+            /* Update matches. */
+            mockMediaQueryList.matches = newMatches;
 
-//         ComponentType<PropsWithRef<React.ComponentProps<T>>: Turn it into a valid React component.
-//     */
-//     const MemoizedWrapper: ComponentType<PropsWithRef<React.ComponentProps<T>>> = (props) => {
-//         spy();
-//         const element = <Component {...props}/>;
-//         return withRouter ? <MemoryRouter>{element}</MemoryRouter> : element;
-//     };
+            /* Call all registered listeners with new state. */
+            for (const listener of listeners) {
+                listener({ matches: newMatches });
+            }
+        },
+    };
+};
 
-//     /*  Get a name for the component, either,
-
-//             1. displayName: From the user (passed in as a parameter)
-//             2. (Component as any).displayName: From an already-set displayName on the original component.
-//             3. (Component as any).name: From the function name of the component.
-//             4. Component: Avoids undefined/empty names as a last resort.
-
-//         Component is cast as any because TypeScript doesn't guarantee is has displayName or name and this
-//         lets us safely access those properties.
-//     */
-//     const componentName =
-//         displayName ||
-//         (Component as any).displayName ||
-//         (Component as any).name ||
-//         "Component";
-
-//     MemoizedWrapper.displayName = `Memoized(${componentName})`;
-
-//     const Memoized = memo(MemoizedWrapper);
-//     Memoized.displayName = componentName;
-
-//     return { Memoized, spy };
-// }

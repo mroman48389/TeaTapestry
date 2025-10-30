@@ -14,8 +14,8 @@
 }
 
 @utility nav-sidebar-list {
-    /* layout and positioning. */
-    @apply flex flex-col items-start gap-y-7;
+    /* layout and positioning. pb-5 is needed to show the threads underline for the final item in the list. */
+    @apply flex flex-col items-start gap-y-7 pb-5;
 }
 
 @utility nav-sidebar-list-item {

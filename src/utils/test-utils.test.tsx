@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { renderWithRouter, createMemoizedComponentWithSpy } from "./test-utils";
+import { renderWithRouter, createMemoizedComponentWithSpy, setUpMatchMediaMock} from "./test-utils";
 
 const TestDivArrowFunction = () => <div data-testid="test-div-arrow-function">Test div arrow function</div>;
 
@@ -62,4 +62,58 @@ describe("createMemoizedComponentWithSpy", () => {
         expect(Memoized.displayName).toBe("TestDivNamedComponentFunction");
     });
 
+});
+
+describe("setUpMatchMediaMock", () => {
+
+    it("Should register and trigger listeners via triggerChange.", () => {
+        const mock = setUpMatchMediaMock(false);
+        const listener = jest.fn();
+
+        const result = window.matchMedia("(min-width: 768px)");
+        result.addListener(listener);
+
+        mock.triggerChange(true);
+
+        expect(result.matches).toBe(true);
+        expect(listener).toHaveBeenCalledWith({ matches: true });
+    });
+
+    it("Should support addEventListener and removeEventListener", () => {
+        const mock = setUpMatchMediaMock(false);
+        const listener = jest.fn();
+
+        const result = window.matchMedia("(min-width: 768px)");
+        result.addEventListener("change", listener);
+
+        mock.triggerChange(true);
+        expect(listener).toHaveBeenCalledWith({ matches: true });
+
+        result.removeEventListener("change", listener);
+        mock.triggerChange(false);
+        expect(listener).toHaveBeenCalledTimes(1); // no second call
+    });
+
+    it("Should support addListener and removeListener.", () => {
+        const mock = setUpMatchMediaMock(false);
+        const listener = jest.fn();
+
+        const result = window.matchMedia("(min-width: 768px)");
+        result.addListener(listener);
+
+        mock.triggerChange(true);
+        expect(listener).toHaveBeenCalledWith({ matches: true });
+
+        result.removeListener(listener);
+        mock.triggerChange(false);
+        expect(listener).toHaveBeenCalledTimes(1); // no second call
+    });
+
+    it("Should return fallback object when query does not match mediaQueryList.media.", () => {
+        setUpMatchMediaMock(false); // sets mediaQueryList.media to "(min-width: 768px)"
+
+        const result = window.matchMedia("(max-width: 500px)");
+
+        expect(result).toEqual({ matches: false, media: "(max-width: 500px)" });
+    });
 });

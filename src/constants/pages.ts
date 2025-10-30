@@ -78,7 +78,7 @@ export const Pages: Record<typeof pageIDs[PageKey], PageMeta> = {
 
     [pageIDs.teaTerminology]: {
         title : 'Tea terminology',
-        path  : '/terminology',
+        path  : '/tea-terminology',
     },
 
     [pageIDs.FAQs]: {

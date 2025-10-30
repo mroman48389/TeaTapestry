@@ -11,6 +11,7 @@
 @import "./styles/components/main.css";
 @import "./styles/components/top-navbar.css";
 @import "./styles/components/nav-sidebar.css";
+@import "./styles/components/hamburger-menu-content.css";
 @import "./styles/components/footer.css";
 
 @import "./styles/components/icons.css";

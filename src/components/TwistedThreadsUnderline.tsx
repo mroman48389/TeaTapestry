@@ -18,6 +18,13 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
     const topPath = generateFixedWavePath(segmentCount, segmentWidth, amplitude);
     const bottomPath = generateFixedWavePath(segmentCount, segmentWidth, -amplitude); // reversed amplitude
 
+    /* Generate a unique gradient ID for the SVG instance below. This prevents ID collisions when multiple 
+       TwistedThreadsUnderline components are rendered on the same page. SVG gradients are referenced by ID 
+       (e.g., fill="url(#leafGradient-xyz)") and must be defined within the same <svg>. If multiple components 
+       reuse the same static ID, the browser may fail to resolve the gradient correctly. Using a random suffix 
+       ensures each gradient is scoped and resolved properly. */
+    const gradientId = `leafGradient-${Math.random().toString(36).slice(2, 11)}`;
+
     return (
         <div data-testid="twisted-threads-underline" className="twisted-threads-underline">
             <motion.svg
@@ -36,7 +43,7 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
                 {...rest}
             >
                 <defs>
-                    <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor={APP_COLORS.DUANNI_YELLOW} />
                         <stop offset="100%" stopColor={APP_COLORS.ZISHA_BROWN} />
                     </linearGradient>
@@ -78,7 +85,7 @@ export default function TwistedThreadsUnderline(props: TwistedThreadsUnderlinePr
                             C${totalPathWidth - 20},16 ${totalPathWidth - 12},16 ${totalPathWidth},10 
                             Z`
                         }
-                        fill="url(#leafGradient)"
+                        fill={`url(#${gradientId})`}
                         stroke={APP_COLORS.ZISHA_BROWN}
                         strokeWidth="1"
                     />

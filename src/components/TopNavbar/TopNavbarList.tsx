@@ -7,6 +7,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import { pageIDs, PageID } from "@/constants/pages";
 import NavListItem from "../NavListItem";
+import TopNavbarLeftList from "./TopNavbarLeftList";
 import HamburgerMenu from "./HamburgerMenu";
 
 type TopNavbarListProps = {
@@ -23,37 +24,7 @@ export default function TopNavbarList(props: TopNavbarListProps) {
     return (
         <nav className="flex" aria-label="Top navbar">
             <ul data-testid="top-navbar-list" className="top-navbar-list" {...rest}> 
-                <NavListItem 
-                    pageID={pageIDs.home}
-                    selectedPageID={selectedPageID}
-                    onSelectPage={onSelectPage}
-                    liClassName={liClassName}
-                    linkClassName={linkClassName}
-                />
-
-                <NavListItem 
-                    pageID={pageIDs.about}
-                    selectedPageID={selectedPageID}
-                    onSelectPage={onSelectPage}
-                    liClassName={liClassName}
-                    linkClassName={linkClassName}
-                />
-
-                <NavListItem 
-                    pageID={pageIDs.whatsNew}
-                    selectedPageID={selectedPageID}
-                    onSelectPage={onSelectPage}
-                    liClassName={liClassName}
-                    linkClassName={linkClassName}
-                />
-
-                <NavListItem 
-                    pageID={pageIDs.contact}
-                    selectedPageID={selectedPageID}
-                    onSelectPage={onSelectPage}
-                    liClassName={liClassName}
-                    linkClassName={linkClassName}
-                />
+                <TopNavbarLeftList selectedPageID={selectedPageID} onSelectPage={onSelectPage}/>
 
                 <li className="mr-0">
                     <Avatar>
@@ -75,7 +46,7 @@ export default function TopNavbarList(props: TopNavbarListProps) {
 
                 {/* Show up until the medium breakpoint, then give a height and width of 0. */}
                 <li className="h-[36px] w-[36px] md:h-0 md:w-0">
-                    <HamburgerMenu/>
+                    <HamburgerMenu selectedPageID={selectedPageID} onSelectPage={onSelectPage}/>
                 </li>
             </ul>
         </nav>
