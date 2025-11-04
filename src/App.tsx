@@ -28,6 +28,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 import { Pages, PageID, pageIDs } from "./constants/pages";
 import { getSidebarWidthOrMarginLeft } from "./utils/class-utils";
+import { log } from "./utils/log-utils";
 
 import Footer from "./components/Footer";
 import { SidebarSettingType } from "./constants/app";
@@ -58,7 +59,7 @@ export default function App() {
         setSidebarOpen(!sidebarOpen);
     }
 
-    console.log("App component rendered");
+    log("App component rendered");
 
     return (
         /*  App is one big vertical flex container that spans the entire viewport height. 

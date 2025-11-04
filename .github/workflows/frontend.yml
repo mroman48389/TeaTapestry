@@ -9,9 +9,8 @@ on:
         branches: [main]
     workflow_dispatch:
 
-
 jobs:
-    # Define a job, eslint, to run on the GitHub Ubuntu virtual machine.
+    # Define a job, linting and testing coverage, to run on the GitHub Ubuntu virtual machine.
     linting-and-testing:
         runs-on: ubuntu-latest
 

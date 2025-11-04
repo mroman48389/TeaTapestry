@@ -6,6 +6,8 @@ import { store } from './store/store';
 
 import { BrowserRouter } from "react-router-dom";
 
+import { SWRConfig } from 'swr';
+
 /* npm install @fontsource/cabin */
 import "@fontsource/cabin/400.css"; // body text, paragraphs, UI labels
 import "@fontsource/cabin/500.css"; // slightly emphasized text, subheadings, or buttons
@@ -14,6 +16,7 @@ import "@fontsource/cabin/700.css"; // main headings, hero text, or anything tha
 
 import './index.css';
 
+import { fetcher } from "./utils/fetcher";
 import App from './App';
 
 const rootElement = document.getElementById('root');
@@ -27,7 +30,9 @@ createRoot(rootElement).render(
         {/* Make variables in store available to entire app. */}
         <Provider store={store}>
             <BrowserRouter>
-                <App/>
+                <SWRConfig value={{fetcher}}>
+                    <App/>
+                </SWRConfig>
             </BrowserRouter>
         </Provider>
     </StrictMode>,
