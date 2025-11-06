@@ -17,7 +17,15 @@ import "@fontsource/cabin/700.css"; // main headings, hero text, or anything tha
 import './index.css';
 
 import { fetcher } from "./utils/fetcher";
+import { log } from './utils/log-utils';
 import App from './App';
+
+if (!import.meta.env.VITE_API_URL) {
+    throw new Error("VITE_API_URL is missing. Check your .env files.");
+}
+else {
+    log("Connecting to: ", import.meta.env.VITE_API_URL);
+}
 
 const rootElement = document.getElementById('root');
 
